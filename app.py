@@ -65,6 +65,11 @@ while not encerrar_programa:
     # ----- Print do Menu Principal -----
     
     print(f'{"MENU PRINCIPAL":^{tamanho_do_programa}}')
+    linhaSimples(tamanho_do_programa)
+    print(f"{'[1] - Opcao 1':^{tamanho_do_programa}}\n{'[2] - Opcao 2':^{tamanho_do_programa}}\n{'[3] - Opcao 3':^{tamanho_do_programa}}\n{'[4] - Opcao 4':^{tamanho_do_programa}}")
+    linhaSimples(tamanho_do_programa)
+
+
     escolha_principal = inputSublinhado('Selecione uma opção: ')
 
     carregandoMenu('Exemplo')
