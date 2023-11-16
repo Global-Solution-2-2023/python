@@ -1,15 +1,1 @@
-{
-    "usuarios": {
-        "admin": {
-            "nome": "admin",
-            "email": "admin@gmail.com",
-            "senha": "1234",
-            "skills": {
-                "luta": {
-                    "nivel": 90,
-                    "descricao": "Mestre sla"
-                }
-            }
-        }
-    }
-}
+{"usuarios": {"admin": {"nome": "admin", "email": "admin@gmail.com", "senha": "1234", "skills": {"luta": {"nivel": 90, "descricao": "Mestre sla"}}}}}
