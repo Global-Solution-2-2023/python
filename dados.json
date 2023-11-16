@@ -1,1 +1,15 @@
-{"objeto1": {"id": 1, "nome": "objeto1"}}
+{
+    "usuarios": {
+        "admin": {
+            "nome": "admin",
+            "email": "admin@gmail.com",
+            "senha": "1234",
+            "skills": {
+                "luta": {
+                    "nivel": 90,
+                    "descricao": "Mestre sla"
+                }
+            }
+        }
+    }
+}
