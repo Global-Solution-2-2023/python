@@ -15,26 +15,46 @@ from time import sleep
 from random import randint
 import math
 
-# --------------------- Funções ---------------------#
-
 # ---------- Opções ---------- #
-menu_options = {
+
+menu_principal = {
     "1" : "Personagem",
     "2" : "Skills",
     "3" : "Missões",
-    "4" : "Configurações",
-    "5" : "Ajuda",
+    "4" : "Ajuda",
+    "5" : "Configurações",
     "0" : "Sair"
 }
 
-menu_ajuda_options = {
-    "1" : {"Para que serve uma vida saudável" : "Para ter mais saude"},
+menu_ajuda = {
+    "1" : {"Para que serve uma vida saudável?" : "Para ter mais saúde."},
     "2" : {"Problema 2" : "Resposta 2"},
     "3" : {"Problema 3" : "Resposta 3"},
     "4" : {"Problema 4" : "Resposta 4"},
     "5" : {"Problema 5" : "Resposta 5"},
     "0" : "Voltar para o menu"
 }
+
+skills = {
+    "Saúde Física" : {
+        "1": {"Nome Skill" : "Skill 1"},
+        "2": {"Nome Skill" : "Skill 2"},
+        "3": {"Nome Skill" : "Skill 3"},
+        "4": {"Nome Skill" : "Skill 4"},
+        "5": {"Nome Skill" : "Skill 5"},
+        "0": {"" : ""},
+    },
+    "Saúde Mental" : {
+        "1" : {"" : ""},
+        "2" : {"" : ""},
+        "3" : {"" : ""},
+        "4" : {"" : ""},
+        "5" : {"" : ""},
+        "0" : "Sair"
+    }
+}
+
+# --------------------- Funções ---------------------
 
 # Função para definir o tamanho do programa no printdo terminal
 def calcTamanhoPrograma(titulo=''):
@@ -67,132 +87,112 @@ def carregandoMenu(menu):
 
 # Função Menu Principal
 def printMenu(titulo="",opcoes={},tamanho=calcTamanhoPrograma('Programa X')):
-    while True:
 
-        print(f'{titulo.upper():^{tamanho}}')
-        linhaSimples(tamanho)
+    print(f'{titulo.upper():^{tamanho}}')
+    linhaSimples(tamanho)
 
-        # Centralizar
-        frase_maior = ''
+    # Calcular a centralização dos items do menu
+    frase_maior = ''
 
-        for k, v in opcoes.items():
-            frase_nova = f'[{k}] - {v}'
+    for k, v in opcoes.items():
+        frase_nova = f'[{k}] - {v}'
 
-            if len(frase_nova) > len(frase_maior):
-                frase_maior = frase_nova
+        if len(frase_nova) > len(frase_maior):
+            frase_maior = frase_nova
 
-        centralizar = math.ceil((tamanho - len(frase_maior)) / 2)
+    centralizar = math.ceil((tamanho - len(frase_maior)) / 2)
 
+
+    # Print do menu
+    for k, v in opcoes.items():
+        print(' ' * centralizar, end="")
+        print(f"[{k}] - {v}")
+
+    linhaSimples(tamanho)
+
+    # Verificando
+    escolha_usuario = verificarOpcao(opcoes, titulo.upper())
     
-        # Print do menu
-        for k, v in opcoes.items():
-            print(' ' * centralizar, end="")
-            print(f"[{k}] - {v}")
+    return escolha_usuario
 
-        linhaSimples(tamanho)
+# Tratamento de erro e verificar opção
+def verificarOpcao(opcoes='', menu=''):
+    
+    try:
+        escolha_usuario = input("Escolha uma opção: ")
+        if escolha_usuario not in opcoes.keys():
+            raise ValueError
 
-        # Verificando
-        try:
-            escolha_usuario = input("Escolha uma opção: ")
-            if escolha_usuario not in opcoes:
-                raise ValueError
-        except:
-            print("Por favor, insira uma opção válida\n\n")
-            continue
-        # Printando opção escolhida
-        print(f"{opcoes.get(escolha_usuario)}\n") 
+    except:
+        print("Por favor, insira uma opção válida\n")
 
-        # Opções
-        match escolha_usuario:
-            case "0":
-                print("Saindo do programa...")
-                break
-            case "1":
-                pass
-            case "2":
-                pass
-            case "3":
-                pass
-            case "4":
-                pass
-            case "5":
-                menuAjuda("Menu Ajuda", menu_ajuda_options)
-
-# ------ Menu Ajuda ------ 
-def menuAjuda(titulo="", opcoes={}, tamanho=calcTamanhoPrograma('Programa X')):
-    while True:
-
-        print(f'{titulo.upper():^{tamanho}}')
-        linhaSimples(tamanho)
-
-        # Centralizar
-        frase_maior = ''
-        for chave in opcoes:
-            if isinstance(opcoes[chave], dict):
-                frase_nova = f'[{chave}] - {list(opcoes[chave].keys())[0]}'
+    # Opções
+    match escolha_usuario:
+        case "0":
+            if menu == 'MENU PRINCIPAL':
+                print("Saindo do programa...\n")
+                sleep(1)
+                return (escolha_usuario, True) # para sair do programa
+        
             else:
-                frase_nova = f'[{chave}] - {opcoes[chave]}'
+                print("Voltando para o menu principal...\n")
+                sleep(1)
+                return escolha_usuario
 
-            if len(frase_nova) > len(frase_maior):
-                frase_maior = frase_nova
-
-        centralizar = math.ceil((tamanho - len(frase_maior)) / 2)
-
-        # Print do menu
-        for chave in opcoes:
-            if isinstance(opcoes[chave], dict):
-                print(' ' * centralizar, end="")
-                print(f'[{chave}] - {list(opcoes[chave].keys())[0]}')
-            else:
-                print(' ' * centralizar, end="")
-                print(f'[{chave}] - {opcoes[chave]}')
-
-
-        linhaSimples(tamanho)
-
-        # Verificando
-        try:
-            escolha_usuario = input("Escolha uma opção: ")
-            if escolha_usuario not in opcoes:
-                raise ValueError
-            # Printando opção escolhida
-            if escolha_usuario == "0":
-                print(opcoes[escolha_usuario])
-            else:
-                print(list(opcoes[escolha_usuario].keys())[0])
-        except:
-            print("Por favor, insira uma opção válida\n\n")
-            continue
-
-        # Opções
-        match escolha_usuario:
-            case "0":
-                print("Voltando para o menu principal...\n\n")
-                break
-            case "1":
-                print(f'\nR: {list(opcoes["1"].values())[0]}\n\n')
-            case "2":
-                print(f'\nR: {list(opcoes["2"].values())[0]}\n\n')
-            case "3":
-                print(f'\nR: {list(opcoes["3"].values())[0]}\n\n')
-            case "4":
-                print(f'\nR: {list(opcoes["4"].values())[0]}\n\n')
-            case "5":
-                print(f'\nR: {list(opcoes["5"].values())[0]}\n\n')
+        case _:
+            for k, v in opcoes.items():
+                if escolha_usuario ==  k:
+                    print(f'\n {v}')
+            return escolha_usuario
+                
 
 # --------------------- Programa Principal ---------------------
 
 # ---------- Variáveis ---------- 
+
 tamanho_do_programa = calcTamanhoPrograma('Programa X')
+encerrar_programa = False
 
 # ---------- Loop do Programa ---------- 
-printMenu("menu principal", menu_options)
 
-# ----- Leitura do arquivo JSON -----
-with open("dados.json", "r") as dados_json:
-    dados_py = json.load(dados_json)
+while not encerrar_programa:
+
+    # ----- Leitura do arquivo JSON -----
+    with open("dados.json", "r") as dados_json:
+        dados_py = json.load(dados_json)
+    
+
+    escolha_principal = printMenu("menu principal", menu_principal)
+
+    try:
+        if escolha_principal[1] == True:
+            break 
+    except:
+        pass
+
+    match escolha_principal:
+        case 1: # Personagem
+            escolha_personagem = printMenu("Personagem",)
+
+        case 2: # Skills
+            escolha_skills = printMenu("Skills",)
+            
+
+        case 3: # Missões
+            escolha_missoes = printMenu("Missões",)
+            
+
+        case 4: # Ajuda
+            escolha_ajuda = printMenu("Ajuda",)
+            
+
+        case 5: # Configurações
+            escolha_configuracoes = printMenu("Configurações",)
+            
 
 
-# ----- Dump para o arquivo JSON -----
-with open("dados.json", "w") as dados_json:
-    json.dump(dados_py, dados_json)
+
+
+    # ----- Dump para o arquivo JSON -----
+    with open("dados.json", "w") as dados_json:
+        json.dump(dados_py, dados_json)
