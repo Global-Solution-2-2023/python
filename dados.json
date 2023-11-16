@@ -1,1 +1,87 @@
-{"usuarios": {"admin": {"nome": "admin", "email": "admin@gmail.com", "senha": "1234", "skills": {"luta": {"nivel": 90, "descricao": "Mestre sla"}}}}}
+{
+    "usuarios": {
+        "admin": {
+            "nome": "admin",
+            "email": "admin@gmail.com",
+            "senha": "1234",
+            "skills": {
+                "luta": {
+                    "nivel": 90
+                }
+            }
+        }
+    },
+    "missoes": {
+
+        "corredor": {
+            "1": {
+                "Nome da Missão" : "Corredor Destemido",
+                "Skill" : "Corredor",
+                "Descrição" : "Os White Walkers estão ameaçando os cidadãos indefesos da Terra da Corrida. Embarque nesta jornada épica para salvar a população! Sua tarefa é correr 10 km em um prazo de 1 semana para fortalecer sua resistência e preparar-se para o confronto iminente com os White Walkers.",
+                "Duração": "1 semana",
+                "Resompensas" : {
+                    "XP" : 50, 
+                    "Gold" : "100g"
+                }
+            },
+            "2": {
+                "Nome da Missão" : "Desafio dos Portões da Eternidade",
+                "Skill" : "Corredor",
+                "Descrição" : "Uma antiga profecia fala de uma passagem mística conhecida como os Portões da Eternidade. Aquele que percorrer 30 km através desta rota lendária ganhará o reconhecimento das Lendas Velozes. Sua missão é aceitar o desafio, superar as adversidades e se tornar parte da elite dos corredores.",
+                "Duração": "2 semanas",
+                "Resompensas" : {
+                    "XP" : 75, 
+                    "Gold" : "150g",
+                    "Troféu" : "Troféu dos Velozes, uma insígnia rara que aumenta sua reputação entre os corredores"
+                }
+            }
+        },
+
+        "luta": {
+            "1": {
+                "Nome da Missão" : "",
+                "Skill" : "",
+                "Descrição" : "",
+                "Duração": "",
+                "Resompensas" : {
+                    "XP" : 0, 
+                    "Gold" : "0g"
+                }
+            },
+            "2": {
+                "Nome da Missão" : "",
+                "Skill" : "",
+                "Descrição" : "",
+                "Duração": "",
+                "Resompensas" : {
+                    "XP" : 0, 
+                    "Gold" : "0g",
+                    "Troféu" : ""
+                }
+            }
+        },
+        "academia": {
+            "1": {
+                "Nome da Missão" : "",
+                "Skill" : "",
+                "Descrição" : "",
+                "Duração": "",
+                "Resompensas" : {
+                    "XP" : 0, 
+                    "Gold" : "0g"
+                }
+            },
+            "2": {
+                "Nome da Missão" : "",
+                "Skill" : "",
+                "Descrição" : "",
+                "Duração": "",
+                "Resompensas" : {
+                    "XP" : 0, 
+                    "Gold" : "0g",
+                    "Troféu" : ""
+                }
+            }
+        }
+    }
+}
