@@ -67,17 +67,19 @@ menu_skills = {
 # ---------- Variáveis ---------- 
 
 tamanho_do_programa = f.tamProg('Aplicativo Programa X')
+usuario_logado = ''
 
 # Variáveis de controle dos while
 encerrar_programa = False
 encerrar_menu_inicial = False
 validar_login = False
-validar_cadastro = False
+validar_cadastro_info = False
 
 # Constantes
 
 nivel_min = 1
 nivel_max = 30
+
 
 # ---------- Loop do Programa ---------- 
 
@@ -88,8 +90,6 @@ while not encerrar_programa:
     print(f'{"Aplicativo Programa X":^{tamanho_do_programa}}')
     f.linha(tamanho_do_programa//2, '=-')
     print()
-
-
 
     # ----- Leitura do arquivo JSON -----
     with open("dados.json", "r") as dados_json:
@@ -129,9 +129,9 @@ while not encerrar_programa:
 
                     f.linha(tamanho_do_programa)
                     print()
-                    usuario_input = input('Digite o seu usuário: ')
+                    usuario_input_login = input('Digite o seu usuário: ')
                     print()
-                    senha_input = input('Digite a sua senha: ')
+                    senha_input_login = input('Digite a sua senha: ')
                     print()
                     f.linha(tamanho_do_programa)
 
@@ -139,9 +139,10 @@ while not encerrar_programa:
                     for usuario, valores in usuarios_db.items():
 
                         # se o usuario do json e a senha do json for igual aos inputs
-                        if valores['Usuario'] == usuario_input and valores['Senha'] == senha_input:
+                        if valores['Usuario'] == usuario_input_login and valores['Senha'] == senha_input_login:
                             print()
                             f.aviso(' Login concluído com sucesso!', tresPontos='')
+                            usuario_logado = usuario_input_login
                             encerrar_menu_inicial = True 
                             validar_login = True
 
@@ -155,37 +156,62 @@ while not encerrar_programa:
                 with open("dados.json", "r") as dados_json:
                     dados_py = json.load(dados_json)
 
-                while not validar_cadastro:
+                usuarios_db = dados_py["Usuarios"]
+
+
+                # ----- Cadastro das informações de login do usuário -----
+
+                while not validar_cadastro_info:
 
                     f.aviso('    Cadastro    ', tresPontos='')
 
                     f.linha(tamanho_do_programa)
                     print()
-                    email_input = input('Digite a sua email: ')
+                    email_input_cadastro = input('Digite a sua email: ')
                     print()
-                    usuario_input = input('Digite o seu usuário: ')
+                    usuario_input_cadastro= input('Digite o seu usuário: ')
                     print()
-                    senha_input = input('Digite a sua senha: ')
+                    senha_input_cadastro = input('Digite a sua senha: ')
                     print()
                     f.linha(tamanho_do_programa)
+
+                    # Verificar se o usuário já existe
+                    usuario_existente = False
 
                     for usuario, valores in usuarios_db.items():
 
                         # Verificação de email e usuário
-                        if valores['Email'] == email_input:
+                        if valores['Email'] == email_input_cadastro:
                             print()
                             f.aviso(' Erro! Email já cadastrado', tresPontos='')
+                            usuario_existente = True
+                            break
 
-                        elif valores['Usuario'] == usuario_input:
+                        elif valores['Usuario'] == usuario_input_cadastro:
                             print()
                             f.aviso(' Erro! Usuário já cadastrado', tresPontos='')
+                            usuario_existente = True
+                            break
 
-                        else:
+                    if not usuario_existente:
 
-                            print()
-                            f.aviso(' Cadastro realizado com sucesso!', tresPontos='')
+                        # Novo usuário que será adicionado
+                        novo_usuario = {
+                            "Email": email_input_cadastro,
+                            "Usuario": usuario_input_cadastro,
+                            "Senha": senha_input_cadastro,
+                        }
 
-                            validar_cadastro = True
+                        usuarios_db[usuario_input_cadastro] = novo_usuario
+
+                        # ----- Dump para o arquivo JSON -----
+                        with open("dados.json", "w") as dados_json:
+                            json.dump(dados_py, dados_json)
+
+                        print()
+                        f.aviso(' Cadastro realizado com sucesso!', tresPontos='')
+
+                        validar_cadastro_info = True
 
             case 0: # Sair do programa
                 encerrar_programa = True
