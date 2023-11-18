@@ -18,7 +18,7 @@
         - Mostrar as skills que o player tem
         - Adicionar ou Remover Skills
     - Missões
-        - Não tem missão disponível
+        - Não tem missão disponível - TALVEZ
     - Configurações
         - Configuração 1
         - Configuração 2

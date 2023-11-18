@@ -1,29 +1,47 @@
+import json
+from time import sleep
 
+with open("dados.json", "r") as dados_json:
+    dados_py = json.load(dados_json)
 
+# usuarios = dados_py["usuarios"]
 
+# for k1, v1 in usuarios.items():
+#     print()
+#     print(f'Usuário: {k1}')
 
-while True:
-    escolha_principal = int(input('escolha principal '))
+#     for k2, v2 in v1.items():
+#         print()
+#         print(f'{k2}: {v2}')
 
+print('[1] - LUTA')
+print('[2] - CORREDOR')
+print('[3] - ACADEMIA')
 
-    match escolha_principal:
-        case 1: # Personagem
-            escolha_personagem = print("Personagem")
+escolha_usuario = int(input('Qual classe você gostaria de ver as missões?'))
 
-        case 2: # Skills
-            escolha_skills = print("Skills")
-            
+match escolha_usuario:
+    case 1:
+        escolha_usuario = 'luta'
+    case 2:
+        escolha_usuario = 'corredor'
+    case 3:
+        escolha_usuario = 'academia'
 
-        case 3: # Missões
-            escolha_missoes = print("Missões")
-            
+missoes = dados_py["missoes"]
 
-        case 4: # Ajuda
-            
-            break
-            
+for k1, v1 in missoes.items():
+    print()
+    if k1 == escolha_usuario:
+        sleep(1)
+        print(f"Classe: {k1}")
 
-        case 5: # Configurações
-            escolha_configuracoes = print("Configurações")
+        for k2, v2 in v1.items():
+            sleep(1)
+            print()
+            print(f'Missão {k2}')
 
-print('aaaa')
+            for k3, v3 in v2.items():
+                sleep(1)
+                print()
+                print(f'- {k3}: {v3}')

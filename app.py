@@ -70,8 +70,6 @@ while not encerrar_programa:
     with open("dados.json", "r") as dados_json:
         dados_py = json.load(dados_json)
     
-    print('LOOOOOOP')
-    
     escolha_principal = f.printMenu("Principal", menu_principal)
 
     match escolha_principal:
