@@ -4,8 +4,8 @@ import math
 # --------------------- Funções ---------------------
 
 # Função para definir o tamanho do programa no printdo terminal
-def calcTamanhoPrograma(titulo='Programa X'):
-    return len(titulo) * 6 # armazenando em uma variável o tamanho do título para formatação do menu
+def tamProg(titulo='Aplicativo Programa X'):
+    return len(titulo) * 3 # armazenando em uma variável o tamanho do título para formatação do menu
 
 # Função de linha simples para estética
 def linha(tam=0,caractere='-'):
@@ -35,12 +35,12 @@ def aviso(frase='Carregando o Menu ',menu='', tresPontos='... '):
     sleep(1)
 
 # Função para centralizar
-def centralizar(frase='', tamanho=calcTamanhoPrograma()):
+def centralizar(frase='', tamanho=tamProg()):
     centralizar =  math.ceil((tamanho - len(frase)) / 2)
     print(' ' * centralizar, end="")
 
 # Função de printar os menus
-def printMenu(titulo="",opcoes={},tamanho=calcTamanhoPrograma()):
+def printMenu(titulo="",opcoes={},tamanho=tamProg()):
 
     aviso(menu=titulo)
 

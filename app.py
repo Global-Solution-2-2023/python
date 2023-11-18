@@ -66,7 +66,7 @@ menu_skills = {
 
 # ---------- Variáveis ---------- 
 
-tamanho_do_programa = f.calcTamanhoPrograma('Programa X')
+tamanho_do_programa = f.tamProg('Aplicativo Programa X')
 
 # Variáveis de controle dos while
 encerrar_programa = False
@@ -82,6 +82,14 @@ nivel_max = 30
 # ---------- Loop do Programa ---------- 
 
 while not encerrar_programa:
+
+    print()
+    f.linha(tamanho_do_programa//2, '=-')
+    print(f'{"Aplicativo Programa X":^{tamanho_do_programa}}')
+    f.linha(tamanho_do_programa//2, '=-')
+    print()
+
+
 
     # ----- Leitura do arquivo JSON -----
     with open("dados.json", "r") as dados_json:
@@ -119,13 +127,13 @@ while not encerrar_programa:
 
                     f.aviso('    Login    ', tresPontos='')
 
-                    f.linha(f.calcTamanhoPrograma())
+                    f.linha(tamanho_do_programa)
                     print()
                     usuario_input = input('Digite o seu usuário: ')
                     print()
                     senha_input = input('Digite a sua senha: ')
                     print()
-                    f.linha(f.calcTamanhoPrograma())
+                    f.linha(tamanho_do_programa)
 
                     # Verificar os inputs
                     for usuario, valores in usuarios_db.items():
@@ -151,7 +159,7 @@ while not encerrar_programa:
 
                     f.aviso('    Cadastro    ', tresPontos='')
 
-                    f.linha(f.calcTamanhoPrograma())
+                    f.linha(tamanho_do_programa)
                     print()
                     email_input = input('Digite a sua email: ')
                     print()
@@ -159,7 +167,7 @@ while not encerrar_programa:
                     print()
                     senha_input = input('Digite a sua senha: ')
                     print()
-                    f.linha(f.calcTamanhoPrograma())
+                    f.linha(tamanho_do_programa)
 
                     for usuario, valores in usuarios_db.items():
 
