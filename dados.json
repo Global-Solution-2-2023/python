@@ -1,12 +1,13 @@
 {
     "Usuarios": {
         "admin": {
-            "Usuario": "admin",
             "Email": "admin@gmail.com",
+            "Usuario": "admin",
             "Senha": "1234",
             "Skills": {
-                "corredor": {
-                    "Nivel": 7
+                "Corredor": {
+                    "Nivel": 26,
+                    "Subclasse": "Vento nas coxas"
                 }
             },
             "Missoes Em Andamento": {

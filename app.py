@@ -12,6 +12,7 @@
 
 import json
 import funcoes as f
+import random
 
 # ---------- Dados ---------- #
 
@@ -70,7 +71,13 @@ tamanho_do_programa = f.calcTamanhoPrograma('Programa X')
 # Variáveis de controle dos while
 encerrar_programa = False
 encerrar_menu_inicial = False
-validar_usuario = False
+validar_login = False
+validar_cadastro = False
+
+# Constantes
+
+nivel_min = 1
+nivel_max = 30
 
 # ---------- Loop do Programa ---------- 
 
@@ -82,6 +89,23 @@ while not encerrar_programa:
 
     usuarios_db = dados_py["Usuarios"]
 
+    # Calcular nível da Skill Corredor do usuário admin
+    nivel_admin_corredor = random.randint(nivel_min, nivel_max)
+
+    usuarios_db["admin"]["Skills"]["Corredor"]["Nivel"] = nivel_admin_corredor
+
+    if nivel_admin_corredor <= 10:
+        usuarios_db["admin"]["Skills"]["Corredor"]["Subclasse"] = 'Passo inicial'
+    elif 10 < nivel_admin_corredor <= 20:
+        usuarios_db["admin"]["Skills"]["Corredor"]["Subclasse"] = 'Ritmo Crescente'
+    else:
+        usuarios_db["admin"]["Skills"]["Corredor"]["Subclasse"] = 'Vento nas coxas'
+
+    # ----- Dump para o arquivo JSON -----
+    with open("dados.json", "w") as dados_json:
+        json.dump(dados_py, dados_json)
+
+
     # ----- Login | Cadastro -----
 
     while not encerrar_menu_inicial:
@@ -91,12 +115,17 @@ while not encerrar_programa:
         match escolha_inicial:
             case 1: # Login
 
-                while not validar_usuario:
+                while not validar_login:
 
                     f.aviso('    Login    ', tresPontos='')
 
-                    usuario_input = input('\nDigite o seu usuário: ')
-                    senha_input = input('\nDigite a sua senha: ')
+                    f.linha(f.calcTamanhoPrograma())
+                    print()
+                    usuario_input = input('Digite o seu usuário: ')
+                    print()
+                    senha_input = input('Digite a sua senha: ')
+                    print()
+                    f.linha(f.calcTamanhoPrograma())
 
                     # Verificar os inputs
                     for usuario, valores in usuarios_db.items():
@@ -106,14 +135,49 @@ while not encerrar_programa:
                             print()
                             f.aviso(' Login concluído com sucesso!', tresPontos='')
                             encerrar_menu_inicial = True 
-                            validar_usuario = True
+                            validar_login = True
 
                         else:
                             print()
                             f.aviso(' Erro no login. Tente novamente.', tresPontos='')
             
             case 2: # Cadastro
-                print('CADASTRO')
+
+                # ----- Leitura do arquivo JSON -----
+                with open("dados.json", "r") as dados_json:
+                    dados_py = json.load(dados_json)
+
+                while not validar_cadastro:
+
+                    f.aviso('    Cadastro    ', tresPontos='')
+
+                    f.linha(f.calcTamanhoPrograma())
+                    print()
+                    email_input = input('Digite a sua email: ')
+                    print()
+                    usuario_input = input('Digite o seu usuário: ')
+                    print()
+                    senha_input = input('Digite a sua senha: ')
+                    print()
+                    f.linha(f.calcTamanhoPrograma())
+
+                    for usuario, valores in usuarios_db.items():
+
+                        # Verificação de email e usuário
+                        if valores['Email'] == email_input:
+                            print()
+                            f.aviso(' Erro! Email já cadastrado', tresPontos='')
+
+                        elif valores['Usuario'] == usuario_input:
+                            print()
+                            f.aviso(' Erro! Usuário já cadastrado', tresPontos='')
+
+                        else:
+
+                            print()
+                            f.aviso(' Cadastro realizado com sucesso!', tresPontos='')
+
+                            validar_cadastro = True
 
             case 0: # Sair do programa
                 encerrar_programa = True
