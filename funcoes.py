@@ -19,18 +19,18 @@ def inputSublinhado(frase):
     return escolha
 
 # Função para "carregar" o menu
-def carregandoMenu(menu):
-    frase = f'Carregando o Menu {menu}...'
+def aviso(frase='Carregando o Menu ',menu='', tresPontos='... '):
+    frase_aviso = f'{frase} {menu}{tresPontos}'
     print()
 
-    centralizar(frase)
-    linha(len(frase), '~')
+    centralizar(frase_aviso)
+    linha(len(frase_aviso), '~')
 
-    centralizar(frase)
-    print(frase)
+    centralizar(frase_aviso)
+    print(frase_aviso)
 
-    centralizar(frase)
-    linha(len(frase), '~')
+    centralizar(frase_aviso)
+    linha(len(frase_aviso), '~')
     print()
     sleep(1)
 
@@ -42,7 +42,7 @@ def centralizar(frase='', tamanho=calcTamanhoPrograma()):
 # Função de printar os menus
 def printMenu(titulo="",opcoes={},tamanho=calcTamanhoPrograma()):
 
-    carregandoMenu(titulo)
+    aviso(menu=titulo)
 
     print(f'{f"Menu {titulo}":^{tamanho}}')
     linha(tamanho)

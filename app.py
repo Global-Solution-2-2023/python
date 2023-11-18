@@ -15,6 +15,12 @@ import funcoes as f
 
 # ---------- Dados ---------- #
 
+menu_inicial = {
+    1 : "Login",
+    2 : "Cadastro",
+    0 : "Sair"
+}
+
 menu_principal = {
     1 : "Personagem",
     2 : "Skills",
@@ -60,7 +66,11 @@ menu_skills = {
 # ---------- Variáveis ---------- 
 
 tamanho_do_programa = f.calcTamanhoPrograma('Programa X')
+
+# Variáveis de controle dos while
 encerrar_programa = False
+encerrar_menu_inicial = False
+validar_usuario = False
 
 # ---------- Loop do Programa ---------- 
 
@@ -69,34 +79,76 @@ while not encerrar_programa:
     # ----- Leitura do arquivo JSON -----
     with open("dados.json", "r") as dados_json:
         dados_py = json.load(dados_json)
-    
-    escolha_principal = f.printMenu("Principal", menu_principal)
 
-    match escolha_principal:
-        case 1: # Personagem
-            escolha_personagem = f.printMenu("Personagem",)
+    usuarios_db = dados_py["Usuarios"]
 
-        case 2: # Skills
-            escolha_skills = f.printMenu("Skills", menu_skills)
+    # ----- Login | Cadastro -----
+
+    while not encerrar_menu_inicial:
+
+        escolha_inicial = f.printMenu("Inicial", menu_inicial)
+
+        match escolha_inicial:
+            case 1: # Login
+
+                while not validar_usuario:
+
+                    f.aviso('    Login    ', tresPontos='')
+
+                    usuario_input = input('\nDigite o seu usuário: ')
+                    senha_input = input('\nDigite a sua senha: ')
+
+                    # Verificar os inputs
+                    for usuario, valores in usuarios_db.items():
+
+                        # se o usuario do json e a senha do json for igual aos inputs
+                        if valores['Usuario'] == usuario_input and valores['Senha'] == senha_input:
+                            print()
+                            f.aviso(' Login concluído com sucesso!', tresPontos='')
+                            encerrar_menu_inicial = True 
+                            validar_usuario = True
+
+                        else:
+                            print()
+                            f.aviso(' Erro no login. Tente novamente.', tresPontos='')
             
+            case 2: # Cadastro
+                print('CADASTRO')
 
-        case 3: # Missões
-            escolha_missoes = f.printMenu("Missões",)
-            
+            case 0: # Sair do programa
+                encerrar_programa = True
+                encerrar_menu_inicial = True
 
-        case 4: # Ajuda
-            escolha_ajuda = f.printMenu("Ajuda", menu_ajuda )
-            
+    if not encerrar_programa: # se usuário não quiser sair no Menu Inicial
+        # Menu Principal
+        escolha_principal = f.printMenu("Principal", menu_principal)
 
-        case 5: # Configurações
-            escolha_configuracoes = f.printMenu("Configurações",)
-            
-        case 0: # Sair
-            encerrar_programa = True
-            break
+        match escolha_principal:
+            case 1: # Personagem
+                escolha_personagem = f.printMenu("Personagem",)
+
+            case 2: # Skills
+                escolha_skills = f.printMenu("Skills", menu_skills)
+                
+
+            case 3: # Missões
+                escolha_missoes = f.printMenu("Missões",)
+                
+
+            case 4: # Ajuda
+                escolha_ajuda = f.printMenu("Ajuda", menu_ajuda )
+                
+
+            case 5: # Configurações
+                escolha_configuracoes = f.printMenu("Configurações",)
+                
+            case 0: # Sair
+                encerrar_programa = True
+                break
 
 
+        # ----- Dump para o arquivo JSON -----
+        with open("dados.json", "w") as dados_json:
+            json.dump(dados_py, dados_json)
 
-    # ----- Dump para o arquivo JSON -----
-    with open("dados.json", "w") as dados_json:
-        json.dump(dados_py, dados_json)
+f.aviso(' Encerrando','Programa')

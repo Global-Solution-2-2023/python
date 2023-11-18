@@ -1,17 +1,42 @@
 {
-    "usuarios": {
+    "Usuarios": {
         "admin": {
-            "nome": "admin",
-            "email": "admin@gmail.com",
-            "senha": "1234",
-            "skills": {
-                "luta": {
-                    "nivel": 90
+            "Usuario": "admin",
+            "Email": "admin@gmail.com",
+            "Senha": "1234",
+            "Skills": {
+                "corredor": {
+                    "Nivel": 7
+                }
+            },
+            "Missoes Em Andamento": {
+                "corredor": {
+                    "1": {
+                        "Nome da Missao": "Corredor Destemido",
+                        "Skill": "Corredor",
+                        "Descricao": "Os White Walkers estao ameacando os cidadaos indefesos da Terra da Corrida. Embarque nesta jornada epica para salvar a populacao! Sua tarefa eh correr 10 km em um prazo de 1 semana para fortalecer sua resistencia e preparar-se para o confronto iminente com os White Walkers.",
+                        "Duracao": "1 semana",
+                        "Resompensas": {
+                            "XP": 50,
+                            "Gold": "100g"
+                        }
+                    },
+                    "2": {
+                        "Nome da Missao": "Desafio dos Portoes da Eternidade",
+                        "Skill": "Corredor",
+                        "Descricao": "Uma antiga profecia fala de uma passagem mistica conhecida como os Portoes da Eternidade. Aquele que percorrer 30 km atraves desta rota lendaria ganhara o reconhecimento das Lendas Velozes. Sua missao eh aceitar o desafio, superar as adversidades e se tornar parte da elite dos corredores.",
+                        "Duracao": "2 semanas",
+                        "Resompensas": {
+                            "XP": 75,
+                            "Gold": "150g",
+                            "Trofeu": "Trofeu dos Velozes, uma insignia rara que aumenta sua reputacao entre os corredores"
+                        }
+                    }
                 }
             }
         }
     },
-    "missoes": {
+    "Missoes - Total": {
         "corredor": {
             "1": {
                 "Nome da Missao": "Corredor Destemido",
