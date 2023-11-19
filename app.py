@@ -189,16 +189,7 @@ while not encerrar_programa:
 
                     f.linha(tamanho_do_programa)
                     
-                    print()
-                    print(f'{f"Agora é hora de escolher as suas Skills!":^{tamanho_do_programa}}')
-                    print()
-                    print(f'{f"Primeiro vamos começar com as Skills relacionadas a Saúde Física.":^{tamanho_do_programa}}')
-
-                    for skill, subclasse in skills_db.items():
-                        print(f'{subclasse}')
-
-
-
+                    
                     f.linha(tamanho_do_programa)
 
                 # Novo usuário que será adicionado

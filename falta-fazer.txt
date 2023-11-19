@@ -1,10 +1,17 @@
 Missoes para as skils que faltam
 
+Mudar missoes para dentro das skills e separa-las por intervalo de nivel
+
 REGEX NO EMAIL DO CADASTRO KKK
 
 Fazer todos os menus
 
 FINALIZAR CADASTRO
-- Mudar skills escolhidas para dicionario com nivel do jogador sendo 1 e subclasse com base no nivel (1)
+- COLOCAR AS SKILLS ESOLHIDAS DENTRO DOS TIPOS DE SAUDE AAAAAAAA
+    - Elas estao juntas e quando tem uma igual (nao praticante), só adiciona uma. mesmo se adicionasse mais, nao teria como saber qual é de qual
+
+Jogar codigo do teste.py no app.py
 
 Mandar dados do cadastro para o json
+
+mas esta dando tudo certo
