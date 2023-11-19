@@ -40,11 +40,11 @@ def centralizar(frase='', tamanho=tamProg()):
     print(' ' * centralizar, end="")
 
 # Função de printar os menus
-def printMenu(titulo="",opcoes={},tamanho=tamProg()):
+def printMenu(titulo="",opcoes={},tamanho=tamProg(), menu='Menu '):
 
     aviso(menu=titulo)
 
-    print(f'{f"Menu {titulo}":^{tamanho}}')
+    print(f'{f"{menu}{titulo}":^{tamanho}}')
     linha(tamanho)
 
     # Calcular a centralização dos items do menu

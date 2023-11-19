@@ -10,7 +10,7 @@
                     "Subclasse": "Passo inicial"
                 }
             },
-            "Missoes Em Andamento": {
+            "Missoes em Andamento": {
                 "corredor": {
                     "1": {
                         "Nome da Missao": "Corredor Destemido",
@@ -130,7 +130,7 @@
             "11 - 20": "Potencia Resiliente",
             "21 - 30": "Maquina de Resistencia"
           },
-          "Nao Praticante": "Nao praticante de atividades fisicas (ainda)"
+          "Nao Praticante": "Nao praticante (ainda)"
         },
         "Saude Mental": {
           "Leitura": {
@@ -142,24 +142,26 @@
             "1 - 10": "Interior Tranquilo",
             "11 - 20": "Respiracao Profunda",
             "21 - 30": "Paz de Espirito"
-          }
+          },
+          "Nao Praticante": "Nao praticante (ainda)"
         },
         "Saude Social": {
-            "TempoComFamilia": {
+            "Tempo com Familia": {
               "1 - 10": "Conexoes Iniciais",
               "11 - 20": "Vinculos Fortalecidos",
               "21 - 30": "Lacos Profundos"
             },
-            "TempoComAmigos": {
+            "Tempo com Amigos": {
               "1 - 10": "Amizades Emergentes",
               "11 - 20": "Relacoes Solidificadas",
               "21 - 30": "Companheirismo Duradouro"
             },
-            "TempoComParceiro": {
+            "Tempo com Parceiro": {
               "1 - 10": "Descobertas Juntas",
               "11 - 20": "Compreensao Mutua",
               "21 - 30": "Vivendo a Dois"
-            }
+            },
+            "Nao Praticante": "Nao praticante (ainda)"
           }
       }
 }

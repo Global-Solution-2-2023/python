@@ -42,25 +42,6 @@ menu_ajuda = {
 
 respostas_ajuda = ["Para ter mais saúde.", "Resposta 2", "Resposta 3", "Resposta 4", "Resposta 5"]
 
-menu_skills = {
-    "Saúde Física" : {
-        1: {"Nome Skill" : "Skill 1"},
-        2: {"Nome Skill" : "Skill 2"},
-        3: {"Nome Skill" : "Skill 3"},
-        4: {"Nome Skill" : "Skill 4"},
-        5: {"Nome Skill" : "Skill 5"},
-        0: "Voltar para o Menu Principal"
-    },
-    "Saúde Mental" : {
-        1 : {"Nome Skill" : "Skill 1"},
-        2 : {"Nome Skill" : "Skill 1"},
-        3 : {"Nome Skill" : "Skill 1"},
-        4 : {"Nome Skill" : "Skill 1"},
-        5 : {"Nome Skill" : "Skill 1"},
-        0 : "Voltar para o Menu Principal"
-    }
-}
-
 
 # --------------------- Programa Principal ---------------------
 
@@ -74,6 +55,7 @@ encerrar_programa = False
 encerrar_menu_inicial = False
 validar_login = False
 validar_cadastro_info = False
+validar_cadastro_skill = False
 
 # Constantes
 
@@ -158,20 +140,23 @@ while not encerrar_programa:
 
                 usuarios_db = dados_py["Usuarios"]
 
+                skills_db = dados_py["Skills"]
+
+                f.aviso('    Cadastro    ', tresPontos='')
 
                 # ----- Cadastro das informações de login do usuário -----
 
                 while not validar_cadastro_info:
 
-                    f.aviso('    Cadastro    ', tresPontos='')
-
                     f.linha(tamanho_do_programa)
                     print()
-                    email_input_cadastro = input('Digite a sua email: ')
+                    print(f'{f"Insira suas informações pessoais":^{tamanho_do_programa}}')
                     print()
-                    usuario_input_cadastro= input('Digite o seu usuário: ')
+                    email_input_cadastro = input('Email: ')
                     print()
-                    senha_input_cadastro = input('Digite a sua senha: ')
+                    usuario_input_cadastro= input('Usuário: ')
+                    print()
+                    senha_input_cadastro = input('Senha: ')
                     print()
                     f.linha(tamanho_do_programa)
 
@@ -195,23 +180,42 @@ while not encerrar_programa:
 
                     if not usuario_existente:
 
-                        # Novo usuário que será adicionado
-                        novo_usuario = {
-                            "Email": email_input_cadastro,
-                            "Usuario": usuario_input_cadastro,
-                            "Senha": senha_input_cadastro,
-                        }
-
-                        usuarios_db[usuario_input_cadastro] = novo_usuario
-
-                        # ----- Dump para o arquivo JSON -----
-                        with open("dados.json", "w") as dados_json:
-                            json.dump(dados_py, dados_json)
-
                         print()
-                        f.aviso(' Cadastro realizado com sucesso!', tresPontos='')
+                        f.aviso(' Cadastro das suas informações realizado com sucesso!', tresPontos='')
 
                         validar_cadastro_info = True
+
+                while not validar_cadastro_skill:
+
+                    f.linha(tamanho_do_programa)
+                    
+                    print()
+                    print(f'{f"Agora é hora de escolher as suas Skills!":^{tamanho_do_programa}}')
+                    print()
+                    print(f'{f"Primeiro vamos começar com as Skills relacionadas a Saúde Física.":^{tamanho_do_programa}}')
+
+                    for skill, subclasse in skills_db.items():
+                        print(f'{subclasse}')
+
+
+
+                    f.linha(tamanho_do_programa)
+
+                # Novo usuário que será adicionado
+                novo_usuario = {
+                    "Email": email_input_cadastro,
+                    "Usuario": usuario_input_cadastro,
+                    "Senha": senha_input_cadastro,
+                    "Skills": "",
+                    "Missoes em Andamento": ""
+                }
+
+                usuarios_db[usuario_input_cadastro] = novo_usuario
+
+                # ----- Dump para o arquivo JSON -----
+                with open("dados.json", "w") as dados_json:
+                    json.dump(dados_py, dados_json)
+
 
             case 0: # Sair do programa
                 encerrar_programa = True
