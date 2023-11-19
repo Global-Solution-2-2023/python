@@ -6,8 +6,8 @@
             "Senha": "1234",
             "Skills": {
                 "Corredor": {
-                    "Nivel": 11,
-                    "Subclasse": "Ritmo Crescente"
+                    "Nivel": 4,
+                    "Subclasse": "Passo inicial"
                 }
             },
             "Missoes Em Andamento": {
@@ -42,7 +42,7 @@
             "Senha": "e"
         }
     },
-    "Missoes - Total": {
+    "Missoes": {
         "corredor": {
             "1": {
                 "Nome da Missao": "Corredor Destemido",
@@ -110,6 +110,37 @@
                     "Gold": "0g",
                     "Trofeu": ""
                 }
+            }
+        }
+    },
+    "Skills": {
+        "Saúde Física": {
+            "Corredor": {
+                "1 - 10": "Passo inicial",
+                "11 - 20": "Ritmo Crescente",
+                "21 - 30": "Vento nas coxas"
+            },
+            "Lutador": {
+                "1 - 10": "Primeiros Golpes",
+                "11 - 20": "Caminho da técnica",
+                "21 - 30": "Dragão Guerreiro"
+            },
+            "Atleta de Academia": {
+                "1 - 10": "Base firme",
+                "11 - 20": "Potência Resiliente",
+                "21 - 30": "Máquina de Resistência"
+            }
+        },
+        "Saúde Mental": {
+            "Leitura": {
+                "1 - 10": "Rota das Páginas",
+                "11 - 20": "Tranquilidade Prosaica",
+                "21 - 30": "Odisseia de Palavras"
+            },
+            "Meditação": {
+                "1 - 10": "Interior Tranquilo",
+                "11 - 20": "Respiração Profunda",
+                "21 - 30": "Paz de Espírito"
             }
         }
     }
