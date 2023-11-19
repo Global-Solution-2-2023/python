@@ -83,7 +83,7 @@ while not encerrar_programa:
 
     print()
     f.linha(tamanho_do_programa//2, '=-')
-    print(f'\033[32m{"Aplicativo Programa X":^{tamanho_do_programa}}\033[m')
+    print(f'\n\033[32m{"Aplicativo Programa X":^{tamanho_do_programa}}\033[m\n')
     f.linha(tamanho_do_programa//2, '=-')
     print()
 
@@ -273,6 +273,7 @@ while not encerrar_programa:
                                     print(f'\n\033[32m{missao_info_chave}:\033[m')
                                         
                                     for recompensa_chave, recompensa_valor in missao_info_valor.items():
+                                        sleep(1)
                                         print(f'- \033[31m{recompensa_chave}\033[m: {recompensa_valor}')
                                 
                                 elif isinstance(missao_info_valor, list): # Descrição
@@ -286,6 +287,8 @@ while not encerrar_programa:
 
                             print()
                             f.linha()
+
+                            sleep(2)
 
             case 3: # Ajuda
                 
