@@ -8,7 +8,7 @@ def tamProg(titulo='Aplicativo Programa X'):
     return len(titulo) * 3 # armazenando em uma variável o tamanho do título para formatação do menu
 
 # Função de linha simples para estética
-def linha(tam=0,caractere='-'):
+def linha(tam=tamProg(),caractere='-'):
     print(f'{caractere}' * tam)
 
 # Função de sublinhado para estética
@@ -19,7 +19,7 @@ def inputSublinhado(frase):
     return escolha
 
 # Função para "carregar" o menu
-def aviso(frase='Carregando o Menu ',menu='', tresPontos='... '):
+def aviso(frase='Carregando o Menu',menu='', tresPontos='... '):
     frase_aviso = f'{frase} {menu}{tresPontos}'
     print()
 
@@ -100,9 +100,7 @@ def verificarOpcao(opcoes='', menu=''):
                 return escolha_usuario
 
         case _:
-            for k, v in opcoes.items():
-                if escolha_usuario ==  k:
-                    print(f'\n {v}')
+
             return escolha_usuario
         
         

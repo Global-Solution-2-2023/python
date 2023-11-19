@@ -13,6 +13,7 @@
 import json
 import funcoes as f
 import random
+from time import sleep
 
 # ---------- Dados ---------- #
 
@@ -49,9 +50,17 @@ respostas_ajuda = ["Para ter mais saúde.", "Resposta 2", "Resposta 3", "Respost
 tamanho_do_programa = f.tamProg('Aplicativo Programa X')
 usuario_logado = ''
 
-# Variáveis de controle dos while
+# ------ Variáveis de controle dos while ------
+
+# Menus
 encerrar_programa = False
 encerrar_menu_inicial = True
+encerrar_menu_personagem = False
+encerrar_menu_skill = False
+encerrar_menu_missoes = False
+encerrar_menu_ajuda = False
+
+# Validação
 validar_login = False
 validar_cadastro_info = False
 validar_cadastro_skill = False
@@ -60,7 +69,6 @@ validar_cadastro_skill = False
 
 nivel_min = 1
 nivel_max = 30
-
 
 # ---------- Loop do Programa ---------- 
 
@@ -109,13 +117,13 @@ while not encerrar_programa:
 
                     f.aviso('    Login    ', tresPontos='')
 
-                    f.linha(tamanho_do_programa)
+                    f.linha()
                     print()
                     usuario_input_login = input('Digite o seu usuário: ')
                     print()
                     senha_input_login = input('Digite a sua senha: ')
                     print()
-                    f.linha(tamanho_do_programa)
+                    f.linha()
 
                     # Verificar os inputs
                     for usuario, valores in usuarios_db.items():
@@ -148,7 +156,7 @@ while not encerrar_programa:
 
                 while not validar_cadastro_info:
 
-                    f.linha(tamanho_do_programa)
+                    f.linha()
                     print()
                     print(f'{f"Insira suas informações pessoais":^{tamanho_do_programa}}')
                     print()
@@ -158,7 +166,7 @@ while not encerrar_programa:
                     print()
                     senha_input_cadastro = input('Senha: ')
                     print()
-                    f.linha(tamanho_do_programa)
+                    f.linha()
 
                     # Verificar se o usuário já existe
                     usuario_existente = False
@@ -187,10 +195,10 @@ while not encerrar_programa:
 
                 while not validar_cadastro_skill:
 
-                    f.linha(tamanho_do_programa)
+                    f.linha()
                     
                     
-                    f.linha(tamanho_do_programa)
+                    f.linha()
 
                 # Novo usuário que será adicionado
                 novo_usuario = {
@@ -229,8 +237,17 @@ while not encerrar_programa:
                 
 
             case 4: # Ajuda
-                escolha_ajuda = f.printMenu("Ajuda", menu_ajuda )
                 
+                while not encerrar_menu_ajuda:
+                    escolha_ajuda = f.printMenu("Ajuda", menu_ajuda )
+
+                    print()
+                    f.linha()
+                    print()
+                    print(respostas_ajuda[escolha_ajuda-1])
+                    print()
+                    f.linha()
+                    sleep(1.5)
 
                 
             case 0: # Sair
