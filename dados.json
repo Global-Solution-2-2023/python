@@ -114,34 +114,52 @@
         }
     },
     "Skills": {
-        "Saúde Física": {
-            "Corredor": {
-                "1 - 10": "Passo inicial",
-                "11 - 20": "Ritmo Crescente",
-                "21 - 30": "Vento nas coxas"
-            },
-            "Lutador": {
-                "1 - 10": "Primeiros Golpes",
-                "11 - 20": "Caminho da técnica",
-                "21 - 30": "Dragão Guerreiro"
-            },
-            "Atleta de Academia": {
-                "1 - 10": "Base firme",
-                "11 - 20": "Potência Resiliente",
-                "21 - 30": "Máquina de Resistência"
-            }
+        "Saude Fisica": {
+          "Corredor": {
+            "1 - 10": "Passo inicial",
+            "11 - 20": "Ritmo Crescente",
+            "21 - 30": "Vento nas coxas"
+          },
+          "Lutador": {
+            "1 - 10": "Primeiros Golpes",
+            "11 - 20": "Caminho da técnica",
+            "21 - 30": "Dragao Guerreiro"
+          },
+          "Atleta de Academia": {
+            "1 - 10": "Base firme",
+            "11 - 20": "Potencia Resiliente",
+            "21 - 30": "Maquina de Resistencia"
+          },
+          "Nao Praticante": "Nao praticante de atividades fisicas (ainda)"
         },
-        "Saúde Mental": {
-            "Leitura": {
-                "1 - 10": "Rota das Páginas",
-                "11 - 20": "Tranquilidade Prosaica",
-                "21 - 30": "Odisseia de Palavras"
-            },
-            "Meditação": {
-                "1 - 10": "Interior Tranquilo",
-                "11 - 20": "Respiração Profunda",
-                "21 - 30": "Paz de Espírito"
-            }
+        "Saude Mental": {
+          "Leitura": {
+            "1 - 10": "Rota das Paginas",
+            "11 - 20": "Tranquilidade Prosaica",
+            "21 - 30": "Odisseia de Palavras"
+          },
+          "Meditacao": {
+            "1 - 10": "Interior Tranquilo",
+            "11 - 20": "Respiracao Profunda",
+            "21 - 30": "Paz de Espirito"
+          }
+        },
+        "Saude Social": {
+            "Tempo com Familia": {
+                "1 - 10": "Conexões Iniciais",
+                "11 - 20": "Vínculos Fortalecidos",
+                "21 - 30": "Laços Profundos"
+              },
+              "Tempo com Amigos": {
+                "1 - 10": "Amizades Emergentes",
+                "11 - 20": "Relações Solidificadas",
+                "21 - 30": "Companheirismo Duradouro"
+              },
+              "Tempo com Parceiro": {
+                "1 - 10": "Descobertas Juntas",
+                "11 - 20": "Compreensão Mútua",
+                "21 - 30": "Vivendo a Dois"
+              }
         }
-    }
+      }
 }
