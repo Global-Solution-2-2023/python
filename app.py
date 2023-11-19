@@ -31,6 +31,8 @@ menu_principal = {
     0 : "Sair"
 }
 
+menu_missoes = {}
+
 menu_ajuda = {
     1 : "Para que serve uma vida saudável?",
     2 : "Pergunta 2",
@@ -48,7 +50,7 @@ respostas_ajuda = ["Para ter mais saúde.", "Resposta 2", "Resposta 3", "Respost
 # ---------- Variáveis ---------- 
 
 tamanho_do_programa = f.tamProg('Aplicativo Programa X')
-usuario_logado = ''
+usuario_logado = 'admin'
 
 # ------ Variáveis de controle dos while ------
 
@@ -66,7 +68,11 @@ validar_cadastro_info = False
 validar_cadastro_skill = False
 
 # Constantes
+with open("dados.json", "r") as dados_json:
+    dados_py = json.load(dados_json)
 
+skills_db = dados_py["Skills"]
+missoes_db = dados_py["Missoes"]
 nivel_min = 1
 nivel_max = 30
 
@@ -148,8 +154,6 @@ while not encerrar_programa:
 
                 usuarios_db = dados_py["Usuarios"]
 
-                skills_db = dados_py["Skills"]
-
                 f.aviso('    Cadastro    ', tresPontos='')
 
                 # ----- Cadastro das informações de login do usuário -----
@@ -221,6 +225,9 @@ while not encerrar_programa:
                 encerrar_menu_inicial = True
 
     if not encerrar_programa: # se usuário não quiser sair no Menu Inicial
+
+        usuario_logado_db = dados_py["Usuarios"][usuario_logado] # Carregar dados json do usuário logado
+
         # Menu Principal
         escolha_principal = f.printMenu("Principal", menu_principal)
 
@@ -232,7 +239,50 @@ while not encerrar_programa:
                 escolha_skills = f.printMenu("Skills", )        
 
             case 3: # Missões
-                escolha_missoes = f.printMenu("Missões",)           
+                missoes_em_andamento_db = usuario_logado_db["Missoes em Andamento"]
+
+                cont_menu_missoes = 0
+
+                for missoes_classes in missoes_em_andamento_db.keys(): 
+                    cont_menu_missoes += 1
+                    menu_missoes[cont_menu_missoes] = missoes_classes
+
+                while not encerrar_menu_missoes:
+
+                    escolha_missoes = f.printMenu("Missões", menu_missoes)
+
+                    for missao_nome_classe, missao_info_total in missoes_em_andamento_db.items():
+                        sleep(1)
+
+                        f.aviso(f"     {missao_nome_classe}    ",tresPontos='')
+
+
+                        for missao_numero, missao_info in missao_info_total.items():
+
+                            sleep(1)
+                            print(f'\n{f"Missão {missao_numero}":^{tamanho_do_programa}}')
+                            f.linha()
+                            
+                            for missao_info_chave, missao_info_valor in missao_info.items():
+                                sleep(1)
+
+                                if isinstance(missao_info_valor, dict): # Recompensa
+                                    print(f'\n{missao_info_chave}:')
+                                        
+                                    for recompensa_chave, recompensa_valor in missao_info_valor.items():
+                                        print(f'- {recompensa_chave}: {recompensa_valor}')
+                                
+                                elif isinstance(missao_info_valor, list):
+                                    print(f'\n{missao_info_chave}:')
+
+                                    for frase in missao_info_valor:
+                                        print(f'{frase}')
+
+                                else:
+                                    print(f'\n{missao_info_chave}: {missao_info_valor}')
+
+                            print()
+                            f.linha()
 
             case 4: # Ajuda
                 

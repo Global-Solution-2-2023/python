@@ -46,6 +46,8 @@ def printMenu(titulo="",opcoes={},tamanho=tamProg(), menu='Menu '):
 
     print(f'{f"{menu}{titulo}":^{tamanho}}')
     linha(tamanho)
+    print()
+
 
     # Calcular a centralização dos items do menu
     frase_maior = ''
@@ -60,7 +62,7 @@ def printMenu(titulo="",opcoes={},tamanho=tamProg(), menu='Menu '):
     for k, v in opcoes.items():
         centralizar(frase_maior)
         print(f"[{k}] - {v}")
-
+    print()
     linha(tamanho)
 
     # Verificando
@@ -77,7 +79,7 @@ def verificarOpcao(opcoes='', menu=''):
     while not validacao_input:
     
         try:
-            escolha_usuario = int(input("Escolha uma opção: "))
+            escolha_usuario = int(input("\nEscolha uma opção: "))
             if escolha_usuario not in opcoes.keys():
                 raise ValueError
             else: 
