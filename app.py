@@ -229,12 +229,10 @@ while not encerrar_programa:
                 escolha_personagem = f.printMenu("Personagem",)
 
             case 2: # Skills
-                escolha_skills = f.printMenu("Skills", )
-                
+                escolha_skills = f.printMenu("Skills", )        
 
             case 3: # Missões
-                escolha_missoes = f.printMenu("Missões",)
-                
+                escolha_missoes = f.printMenu("Missões",)           
 
             case 4: # Ajuda
                 
@@ -249,7 +247,6 @@ while not encerrar_programa:
                     f.linha()
                     sleep(1.5)
 
-                
             case 0: # Sair
                 encerrar_programa = True
                 break
