@@ -4,11 +4,11 @@ Mudar missoes para dentro das skills e separa-las por intervalo de nivel
 
 REGEX NO EMAIL DO CADASTRO 
 
-Fazer todos os menus
+Fazer o MENU PERSONAGEM
 
 FINALIZA
 
-Jogar codigo do teste.py no app.py
+Jogar codigo do codigo-cadastro-skill.py no app.py
 
 Mandar dados do cadastro para o json
 

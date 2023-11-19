@@ -32,7 +32,11 @@ menu_principal = {
 
 menu_missoes = {}
 
-menu_personagem = {}
+menu_personagem = {
+    1 : "Informações da Conta",
+    2 : "Skills",
+    0 : "Voltar para Menu Principal",
+}
 
 menu_ajuda = {
     1 : "Para que serve uma vida saudável?",
@@ -239,56 +243,80 @@ while not encerrar_programa:
 
         match escolha_principal:
             case 1: # Personagem
-                escolha_personagem = f.printMenu("Personagem",)
+
+                while not encerrar_menu_personagem:
+                    escolha_personagem = f.printMenu("Personagem", menu_personagem)
+
+                    # Se quiser voltar para o Menu Principal
+                    if escolha_personagem == 0:
+                        encerrar_menu_personagem = True
+                    
+                    # Se não
+                    else:
+
+                        print()
 
             case 2: # Missões
                 missoes_em_andamento_db = usuario_logado_db["Missoes em Andamento"]
 
                 cont_menu_missoes = 0
 
+                # Para cada Classe em Missoes em Andamento
                 for missoes_classes in missoes_em_andamento_db.keys(): 
+                    # Numero de missoes:
                     cont_menu_missoes += 1
+                    # Adicionar cada Classe no Menu Missoes
                     menu_missoes[cont_menu_missoes] = missoes_classes
+
+                # Adicionar opção de Voltar para o Menu Principal
+                menu_missoes[0] = "Voltar para Menu Principal"
 
                 while not encerrar_menu_missoes:
 
                     escolha_missoes = f.printMenu("Missões", menu_missoes)
 
-                    for missao_nome_classe, missao_info_total in missoes_em_andamento_db.items():
-                        sleep(1)
-
-                        f.aviso(f"     {missao_nome_classe}    ",tresPontos='')
-
-
-                        for missao_numero, missao_info in missao_info_total.items():
-
+                    # Se quiser voltar para o Menu Principal
+                    if escolha_missoes == 0:
+                        encerrar_menu_missoes = True
+                    
+                    # Se não
+                    else:
+            
+                        for missao_nome_classe, missao_info_total in missoes_em_andamento_db.items():
                             sleep(1)
-                            print(f'\n\033[35m{f"Missão {missao_numero}":^{tamanho_do_programa}}\033[m')
-                            f.linha()
-                            
-                            for missao_info_chave, missao_info_valor in missao_info.items():
+
+                            f.aviso(f"     {missao_nome_classe}    ",tresPontos='')
+
+
+                            for missao_numero, missao_info in missao_info_total.items():
+
                                 sleep(1)
-
-                                if isinstance(missao_info_valor, dict): # Recompensa
-                                    print(f'\n\033[32m{missao_info_chave}:\033[m')
-                                        
-                                    for recompensa_chave, recompensa_valor in missao_info_valor.items():
-                                        sleep(1)
-                                        print(f'- \033[31m{recompensa_chave}\033[m: {recompensa_valor}')
+                                print(f'\n\033[35m{f"Missão {missao_numero}":^{tamanho_do_programa}}\033[m')
+                                f.linha()
                                 
-                                elif isinstance(missao_info_valor, list): # Descrição
-                                    print(f'\n\033[32m{missao_info_chave}:\033[m\n')
+                                for missao_info_chave, missao_info_valor in missao_info.items():
+                                    sleep(1)
 
-                                    for frase in missao_info_valor:
-                                        print(f'{frase}')
+                                    if isinstance(missao_info_valor, dict): # Recompensa
+                                        print(f'\n\033[32m{missao_info_chave}:\033[m')
+                                            
+                                        for recompensa_chave, recompensa_valor in missao_info_valor.items():
+                                            sleep(1)
+                                            print(f'- \033[31m{recompensa_chave}\033[m: {recompensa_valor}')
+                                    
+                                    elif isinstance(missao_info_valor, list): # Descrição
+                                        print(f'\n\033[32m{missao_info_chave}:\033[m\n')
 
-                                else:
-                                    print(f'\n\033[32m{missao_info_chave}\033[m: {missao_info_valor}')
+                                        for frase in missao_info_valor:
+                                            print(f'{frase}')
 
-                            print()
-                            f.linha()
+                                    else:
+                                        print(f'\n\033[32m{missao_info_chave}\033[m: {missao_info_valor}')
 
-                            sleep(2)
+                                print()
+                                f.linha()
+
+                                sleep(2)
 
             case 3: # Ajuda
                 
@@ -307,6 +335,8 @@ while not encerrar_programa:
                 encerrar_programa = True
                 break
 
+        encerrar_menu_missoes = False
+        encerrar_menu_personagem = False
         # with open("dados.json", "r") as dados_json:
         #     dados_py = json.load(dados_json)
         # ----- Dump para o arquivo JSON -----
