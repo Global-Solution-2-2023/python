@@ -19,9 +19,9 @@ for skill, classe in skills_db.items(): # skill -> Saude X  |  classe -> { class
     skills_classes_disponiveis = []
     cont_skill_escolhida = 0
 
-    for nome_classe in classe.keys(): # nome_classe -> Nome da Classe (ex: Atleta de Academia, Corredor, Lutador)
+    for nome_classe_adicionar in classe.keys(): # nome_classe_adicionar -> Nome da Classe (ex: Atleta de Academia, Corredor, Lutador)
         # Adicionando classes na lista de classes disponíveis
-        skills_classes_disponiveis.append(nome_classe)
+        skills_classes_disponiveis.append(nome_classe_adicionar)
 
     print(f'\n{f"Skills relacionadas a {skill}:":^50}')
 
@@ -51,7 +51,13 @@ for skill, classe in skills_db.items(): # skill -> Saude X  |  classe -> { class
                 # nome da classe escolhida
                 nome_classe_escolhida = skills_classes_disponiveis[skill_classe_input_cadastro - 1]
 
+                cont = 0
+
                 for nome_classe, nome_subclasse in classe.items(): # nome_classe -> Nome da Classe (ex: Corredor)  |  Subclasse da Classe com intervalo de nivel e nome (ex: "1 - 10": "Base firme")
+                    cont+=1
+                    print(cont)
+                    print(f"\nNome classe do loop: {nome_classe}")
+                    print(f"Nome classe escolhida: {nome_classe_escolhida}\n")
                     
                     # Se a classe escolhida for igual ao nome da classe atual no loop ALTERAR ISSO, ESTA DANDO ERRO
                     if nome_classe_escolhida == nome_classe:
@@ -61,6 +67,7 @@ for skill, classe in skills_db.items(): # skill -> Saude X  |  classe -> { class
 
                         # Remover classe escolhida na lista de classes disponíveis
                         skills_classes_disponiveis.remove(nome_classe) 
+
 
                         print(f'\nClasse {nome_classe} adicionada com sucesso!')
 
@@ -72,6 +79,8 @@ for skill, classe in skills_db.items(): # skill -> Saude X  |  classe -> { class
 
                         if cont_skill_escolhida == 1:
                             skills_classes_disponiveis.remove('Nao Praticante')
+                        
+                        print(skills_classes_disponiveis)
 
                         break
 
