@@ -21,7 +21,7 @@ for skill, classe in skills_db.items():
         # Adicionando classes na lista de classes disponíveis
         skill_classes_disponiveis.append(nome_classe)
 
-    print(f'{f"Skills relacionadas a {skill}:":^50}')
+    print(f'\n{f"Skills relacionadas a {skill}:":^50}')
 
     while not validar_cadastro_skill:
 
@@ -73,7 +73,7 @@ for skill, classe in skills_db.items():
                     
                     # Se a skill escolhida fo igual a classe "não praticante"
                     elif skill_classe_input_cadastro == cont_skill:
-                        print(f'\nClasse {nome_classe} adicionada com sucesso!')
+                        print(f'\nClasse {skill_classes_disponiveis[-1]} adicionada com sucesso!')
                         validar_cadastro_skill = True
                         break
             
