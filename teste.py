@@ -28,11 +28,15 @@ for skill, classe in skills_db.items():
         cont_skill = 0
         print()
 
-        for nome_classe in range(0, len(skill_classes_disponiveis)):
+        for i in range(0, len(skill_classes_disponiveis)):
 
             # Contador para printar número das skills
             cont_skill += 1
             print(f'[{cont_skill}] - {skill_classes_disponiveis[cont_skill-1]}')
+
+            # Opção de Sair
+            if cont_skill == len(skill_classes_disponiveis) and len(skills_classe_escolhidas) > 0:
+                print(f'[{cont_skill+1}] - Não Desejo Escolher Mais')
 
         try:
             # Input da escolha da skill
@@ -77,13 +81,16 @@ for skill, classe in skills_db.items():
                         validar_cadastro_skill = True
                         break
             
+            elif skill_classe_input_cadastro == cont_skill  + 1:
+                print('\nOpção Não Desejo Escolher Mais selecionada com sucesso!\n')
+                validar_cadastro_skill = True
+
             else:
                 raise ValueError
 
         except:
             # Erro
             print('\nErro! Digite uma opção válida!\n')
-
         
         while not validar_cadastro_skill_continuar:
             
