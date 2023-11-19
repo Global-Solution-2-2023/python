@@ -1,17 +1,26 @@
-Missoes para as skils que faltam
+Criar Missoes para as skils que faltam
 
 Mudar missoes para dentro das skills e separa-las por intervalo de nivel
 
-REGEX NO EMAIL DO CADASTRO KKK
+REGEX NO EMAIL DO CADASTRO 
 
 Fazer todos os menus
 
-FINALIZAR CADASTRO
-- COLOCAR AS SKILLS ESOLHIDAS DENTRO DOS TIPOS DE SAUDE AAAAAAAA
-    - Elas estao juntas e quando tem uma igual (nao praticante), só adiciona uma. mesmo se adicionasse mais, nao teria como saber qual é de qual
+FINALIZA
 
 Jogar codigo do teste.py no app.py
 
 Mandar dados do cadastro para o json
 
-mas esta dando tudo certo
+ESTA DANDO ERRO COM NOME_CLASSE - PRECISA SER OUTRA COISA PQ QUANDO PASSA NO LOOP DE CLASSE.ITEMS(), ELE VAI EM ORDEM, SE VC ESCOLHER OUTRO QUE NAO SEJA NA ORDEM DA ERRO
+
+EXEMPLO: 
+
+Classe escolhida pelo usuário: Corredor
+
+Nome da classe atual no loop: Atleta de Academia
+
+
+Classe escolhida pelo usuário: Corredor
+
+Nome da classe atual no loop: Corredor
