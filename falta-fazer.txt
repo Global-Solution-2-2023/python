@@ -1,5 +1,10 @@
-Missoes para 2 skills de saude mental
+Missoes para as skils que faltam
+
+REGEX NO EMAIL DO CADASTRO KKK
 
 Fazer todos os menus
 
-Fazer cadastro e login
+FINALIZAR CADASTRO
+- Mudar skills escolhidas para dicionario com nivel do jogador sendo 1 e subclasse com base no nivel (1)
+
+Mandar dados do cadastro para o json

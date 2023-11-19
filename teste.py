@@ -5,21 +5,22 @@ with open("dados.json", "r") as dados_json:
     dados_py = json.load(dados_json)
 
 skills_db = dados_py["Skills"]
+skills_classes_escolhidas = {}
 
 print()
 print(f'{f"Agora é hora de escolher as suas Skills!":^50}')
 print()
 
-for skill, classe in skills_db.items():
+for skill, classe in skills_db.items(): # skill -> Saude X  |  classe -> { classe : } (ex: { Atleta de Academia, Corredor, Lutador })
     validar_cadastro_skill = False
     validar_cadastro_skill_continuar = True
 
-    skills_classe_escolhidas = []
-    skill_classes_disponiveis = []
+    skills_classes_disponiveis = []
+    cont_skill_escolhida = 0
 
-    for nome_classe in classe.keys():
+    for nome_classe in classe.keys(): # nome_classe -> Nome da Classe (ex: Atleta de Academia, Corredor, Lutador)
         # Adicionando classes na lista de classes disponíveis
-        skill_classes_disponiveis.append(nome_classe)
+        skills_classes_disponiveis.append(nome_classe)
 
     print(f'\n{f"Skills relacionadas a {skill}:":^50}')
 
@@ -28,14 +29,14 @@ for skill, classe in skills_db.items():
         cont_skill = 0
         print()
 
-        for i in range(0, len(skill_classes_disponiveis)):
+        for i in range(0, len(skills_classes_disponiveis)):
 
             # Contador para printar número das skills
             cont_skill += 1
-            print(f'[{cont_skill}] - {skill_classes_disponiveis[cont_skill-1]}')
+            print(f'[{cont_skill}] - {skills_classes_disponiveis[cont_skill-1]}')
 
             # Opção de Sair
-            if cont_skill == len(skill_classes_disponiveis) and len(skills_classe_escolhidas) > 0:
+            if cont_skill == len(skills_classes_disponiveis) and cont_skill_escolhida > 0:
                 print(f'[{cont_skill+1}] - Não Desejo Escolher Mais')
 
         try:
@@ -45,39 +46,43 @@ for skill, classe in skills_db.items():
             # Se não estiver fora das opções oferecidas
 
             if cont_skill >= skill_classe_input_cadastro > 0:
-                cont_skill_escolhida = 0
 
-                for nome_classe in classe.keys():
-
+                for nome_classe, nome_subclasse in classe.items(): # nome_classe -> Nome da Classe (ex: Corredor)  |  Subclasse da Classe com intervalo de nivel e nome (ex: "1 - 10": "Base firme")
 
                     # Se a classe escolhida pelo input dentro da lista de classes disponíveis for igual ao nome da classe atual no loop
-                    if skill_classes_disponiveis[skill_classe_input_cadastro - 1] == nome_classe:
+                    if skills_classes_disponiveis[skill_classe_input_cadastro - 1] == nome_classe:
 
                         # Adicionar classe escolhida na lista de classes escolhidas
-                        skills_classe_escolhidas.append(nome_classe)
+                        skills_classes_escolhidas[nome_classe] = {"Nivel": 1,"Subclasse": next(iter(nome_subclasse.keys()))}
 
                         # Remover classe escolhida na lista de classes disponíveis
-                        skill_classes_disponiveis.remove(nome_classe)
+                        skills_classes_disponiveis.remove(nome_classe)
 
                         print(f'\nClasse {nome_classe} adicionada com sucesso!')
 
                         # Ir para a pergunta de continuar escolhendo ou não 
                         validar_cadastro_skill_continuar = False
 
-                        break
-
                         # Contador para saber quantas skills foram scolhidas
                         cont_skill_escolhida += 1
+
+                        break
+
                     
                     # Se o tamanho das skills escolhidas for igual a quantidade de skills, excluindo a "não praticante"
-                    if len(skill_classes_disponiveis) - 1 == 1:
+                    if len(skills_classes_disponiveis) - 1 == 1:
                         print(f'\nTodas as Classes de {skill} foram selecionadas\n')
                         validar_cadastro_skill = True
                         break
                     
                     # Se a skill escolhida fo igual a classe "não praticante"
                     elif skill_classe_input_cadastro == cont_skill:
-                        print(f'\nClasse {skill_classes_disponiveis[-1]} adicionada com sucesso!')
+
+                        # Adicionar classe escolhida na lista de classes escolhidas
+                        skills_classes_escolhidas[skills_classes_disponiveis[-1]] = "Nao praticante (ainda)"
+
+                        print(f'\nClasse {skills_classes_disponiveis[-1]} adicionada com sucesso!')
+
                         validar_cadastro_skill = True
                         break
             
@@ -113,3 +118,5 @@ for skill, classe in skills_db.items():
             except:
                 # Erro
                 print('\nErro! Digite uma opção válida!\n')
+
+print(skills_classes_escolhidas)
