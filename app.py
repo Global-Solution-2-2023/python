@@ -27,7 +27,6 @@ menu_principal = {
     2 : "Skills",
     3 : "Missões",
     4 : "Ajuda",
-    5 : "Configurações",
     0 : "Sair"
 }
 
@@ -52,7 +51,7 @@ usuario_logado = ''
 
 # Variáveis de controle dos while
 encerrar_programa = False
-encerrar_menu_inicial = False
+encerrar_menu_inicial = True
 validar_login = False
 validar_cadastro_info = False
 validar_cadastro_skill = False
@@ -73,27 +72,28 @@ while not encerrar_programa:
     f.linha(tamanho_do_programa//2, '=-')
     print()
 
-    # ----- Leitura do arquivo JSON -----
-    with open("dados.json", "r") as dados_json:
-        dados_py = json.load(dados_json)
+    # # SIMULAR NIVEL DO ADMIN NA SKILL 
+    # # ----- Leitura do arquivo JSON -----
+    # with open("dados.json", "r") as dados_json:
+    #     dados_py = json.load(dados_json)
 
-    usuarios_db = dados_py["Usuarios"]
+    # usuarios_db = dados_py["Usuarios"]
 
-    # Calcular nível da Skill Corredor do usuário admin
-    nivel_admin_corredor = random.randint(nivel_min, nivel_max)
+    # # Calcular nível da Skill Corredor do usuário admin
+    # nivel_admin_corredor = random.randint(nivel_min, nivel_max)
 
-    usuarios_db["admin"]["Skills"]["Corredor"]["Nivel"] = nivel_admin_corredor
+    # usuarios_db["admin"]["Skills"]["Corredor"]["Nivel"] = nivel_admin_corredor
 
-    if nivel_admin_corredor <= 10:
-        usuarios_db["admin"]["Skills"]["Corredor"]["Subclasse"] = 'Passo inicial'
-    elif 10 < nivel_admin_corredor <= 20:
-        usuarios_db["admin"]["Skills"]["Corredor"]["Subclasse"] = 'Ritmo Crescente'
-    else:
-        usuarios_db["admin"]["Skills"]["Corredor"]["Subclasse"] = 'Vento nas coxas'
+    # if nivel_admin_corredor <= 10:
+    #     usuarios_db["admin"]["Skills"]["Corredor"]["Subclasse"] = 'Passo inicial'
+    # elif 10 < nivel_admin_corredor <= 20:
+    #     usuarios_db["admin"]["Skills"]["Corredor"]["Subclasse"] = 'Ritmo Crescente'
+    # else:
+    #     usuarios_db["admin"]["Skills"]["Corredor"]["Subclasse"] = 'Vento nas coxas'
 
-    # ----- Dump para o arquivo JSON -----
-    with open("dados.json", "w") as dados_json:
-        json.dump(dados_py, dados_json)
+    # # ----- Dump para o arquivo JSON -----
+    # with open("dados.json", "w") as dados_json:
+    #     json.dump(dados_py, dados_json)
 
 
     # ----- Login | Cadastro -----
@@ -221,7 +221,7 @@ while not encerrar_programa:
                 escolha_personagem = f.printMenu("Personagem",)
 
             case 2: # Skills
-                escolha_skills = f.printMenu("Skills", menu_skills)
+                escolha_skills = f.printMenu("Skills", )
                 
 
             case 3: # Missões
@@ -232,16 +232,15 @@ while not encerrar_programa:
                 escolha_ajuda = f.printMenu("Ajuda", menu_ajuda )
                 
 
-            case 5: # Configurações
-                escolha_configuracoes = f.printMenu("Configurações",)
                 
             case 0: # Sair
                 encerrar_programa = True
                 break
 
-
+        # with open("dados.json", "r") as dados_json:
+        #     dados_py = json.load(dados_json)
         # ----- Dump para o arquivo JSON -----
-        with open("dados.json", "w") as dados_json:
-            json.dump(dados_py, dados_json)
+        # with open("dados.json", "w") as dados_json:
+        #     json.dump(dados_py, dados_json)
 
 f.aviso(' Encerrando','Programa')

@@ -71,14 +71,20 @@ def printMenu(titulo="",opcoes={},tamanho=tamProg(), menu='Menu '):
 
 # Tratamento de erro e verificar opção
 def verificarOpcao(opcoes='', menu=''):
-    
-    try:
-        escolha_usuario = int(input("Escolha uma opção: "))
-        if escolha_usuario not in opcoes.keys():
-            raise ValueError
 
-    except:
-        print("Por favor, insira uma opção válida\n")
+    validacao_input = False
+
+    while not validacao_input:
+    
+        try:
+            escolha_usuario = int(input("Escolha uma opção: "))
+            if escolha_usuario not in opcoes.keys():
+                raise ValueError
+            else: 
+                validacao_input = True
+
+        except:
+            print("Por favor, insira uma opção válida\n")
 
     # Opções
     match escolha_usuario:
