@@ -22,7 +22,7 @@ def inputSublinhado(frase):
 def aviso(frase='Carregando o Menu',menu='', tresPontos='... '):
     frase_aviso = f'{frase} {menu}{tresPontos}'
     print()
-
+    print('\033[34m')
     centralizar(frase_aviso)
     linha(len(frase_aviso), '~')
 
@@ -31,6 +31,7 @@ def aviso(frase='Carregando o Menu',menu='', tresPontos='... '):
 
     centralizar(frase_aviso)
     linha(len(frase_aviso), '~')
+    print('\033[m')
     print()
     sleep(1)
 
@@ -44,7 +45,7 @@ def printMenu(titulo="",opcoes={},tamanho=tamProg(), menu='Menu '):
 
     aviso(menu=titulo)
 
-    print(f'{f"{menu}{titulo}":^{tamanho}}')
+    print(f'\033[36m{f"{menu}{titulo}":^{tamanho}}\033[m')
     linha(tamanho)
     print()
 
@@ -79,7 +80,10 @@ def verificarOpcao(opcoes='', menu=''):
     while not validacao_input:
     
         try:
-            escolha_usuario = int(input("\nEscolha uma opção: "))
+            print('\033[33m')
+            escolha_usuario = int(inputSublinhado("\nEscolha uma opção: "))
+            print('\033[m')
+
             if escolha_usuario not in opcoes.keys():
                 raise ValueError
             else: 

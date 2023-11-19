@@ -83,7 +83,7 @@ while not encerrar_programa:
 
     print()
     f.linha(tamanho_do_programa//2, '=-')
-    print(f'{"Aplicativo Programa X":^{tamanho_do_programa}}')
+    print(f'\033[32m{"Aplicativo Programa X":^{tamanho_do_programa}}\033[m')
     f.linha(tamanho_do_programa//2, '=-')
     print()
 
@@ -124,11 +124,12 @@ while not encerrar_programa:
 
                     f.aviso('    Login    ', tresPontos='')
 
+                    print(f'\033[36m{f"Login":^{tamanho_do_programa}}\033[m')
                     f.linha()
                     print()
-                    usuario_input_login = input('Digite o seu usuário: ')
+                    usuario_input_login = input('\033[33mDigite o seu usuário: \033[m')
                     print()
-                    senha_input_login = input('Digite a sua senha: ')
+                    senha_input_login = input('\033[33mDigite a sua senha: \033[m')
                     print()
                     f.linha()
 
@@ -161,15 +162,15 @@ while not encerrar_programa:
 
                 while not validar_cadastro_info:
 
+                    print()
+                    print(f'\033[36m{f"Insira suas informações pessoais":^{tamanho_do_programa}}\033[m')
                     f.linha()
                     print()
-                    print(f'{f"Insira suas informações pessoais":^{tamanho_do_programa}}')
+                    email_input_cadastro = input('\033[33mEmail: \033[m')
                     print()
-                    email_input_cadastro = input('Email: ')
+                    usuario_input_cadastro= input('\033[33mUsuário: \033[m')
                     print()
-                    usuario_input_cadastro= input('Usuário: ')
-                    print()
-                    senha_input_cadastro = input('Senha: ')
+                    senha_input_cadastro = input('\033[33mSenha: \033[m')
                     print()
                     f.linha()
 
@@ -230,7 +231,7 @@ while not encerrar_programa:
         usuario_logado_db = dados_py["Usuarios"][usuario_logado] # Carregar dados json do usuário logado
 
         print()
-        print(f'{f"Seja bem-vindo {usuario_logado}!":^{tamanho_do_programa}}')
+        print(f'\033[33m{f"Seja bem-vindo {usuario_logado}!":^{tamanho_do_programa}}\033[m')
         print()
 
         # Menu Principal
@@ -262,26 +263,26 @@ while not encerrar_programa:
                         for missao_numero, missao_info in missao_info_total.items():
 
                             sleep(1)
-                            print(f'\n{f"Missão {missao_numero}":^{tamanho_do_programa}}')
+                            print(f'\n\033[35m{f"Missão {missao_numero}":^{tamanho_do_programa}}\033[m')
                             f.linha()
                             
                             for missao_info_chave, missao_info_valor in missao_info.items():
                                 sleep(1)
 
                                 if isinstance(missao_info_valor, dict): # Recompensa
-                                    print(f'\n{missao_info_chave}:')
+                                    print(f'\n\033[32m{missao_info_chave}:\033[m')
                                         
                                     for recompensa_chave, recompensa_valor in missao_info_valor.items():
-                                        print(f'- {recompensa_chave}: {recompensa_valor}')
+                                        print(f'- \033[31m{recompensa_chave}\033[m: {recompensa_valor}')
                                 
                                 elif isinstance(missao_info_valor, list): # Descrição
-                                    print(f'\n{missao_info_chave}:\n')
+                                    print(f'\n\033[32m{missao_info_chave}:\033[m\n')
 
                                     for frase in missao_info_valor:
                                         print(f'{frase}')
 
                                 else:
-                                    print(f'\n{missao_info_chave}: {missao_info_valor}')
+                                    print(f'\n\033[32m{missao_info_chave}\033[m: {missao_info_valor}')
 
                             print()
                             f.linha()
