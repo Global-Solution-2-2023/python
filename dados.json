@@ -145,21 +145,21 @@
           }
         },
         "Saude Social": {
-            "Tempo com Familia": {
-                "1 - 10": "Conexões Iniciais",
-                "11 - 20": "Vínculos Fortalecidos",
-                "21 - 30": "Laços Profundos"
-              },
-              "Tempo com Amigos": {
-                "1 - 10": "Amizades Emergentes",
-                "11 - 20": "Relações Solidificadas",
-                "21 - 30": "Companheirismo Duradouro"
-              },
-              "Tempo com Parceiro": {
-                "1 - 10": "Descobertas Juntas",
-                "11 - 20": "Compreensão Mútua",
-                "21 - 30": "Vivendo a Dois"
-              }
-        }
+            "TempoComFamilia": {
+              "1 - 10": "Conexoes Iniciais",
+              "11 - 20": "Vinculos Fortalecidos",
+              "21 - 30": "Lacos Profundos"
+            },
+            "TempoComAmigos": {
+              "1 - 10": "Amizades Emergentes",
+              "11 - 20": "Relacoes Solidificadas",
+              "21 - 30": "Companheirismo Duradouro"
+            },
+            "TempoComParceiro": {
+              "1 - 10": "Descobertas Juntas",
+              "11 - 20": "Compreensao Mutua",
+              "21 - 30": "Vivendo a Dois"
+            }
+          }
       }
 }
