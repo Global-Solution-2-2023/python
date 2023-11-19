@@ -25,13 +25,14 @@ menu_inicial = {
 
 menu_principal = {
     1 : "Personagem",
-    2 : "Skills",
-    3 : "Missões",
-    4 : "Ajuda",
+    2 : "Missões",
+    3 : "Ajuda",
     0 : "Sair"
 }
 
 menu_missoes = {}
+
+menu_personagem = {}
 
 menu_ajuda = {
     1 : "Para que serve uma vida saudável?",
@@ -228,6 +229,10 @@ while not encerrar_programa:
 
         usuario_logado_db = dados_py["Usuarios"][usuario_logado] # Carregar dados json do usuário logado
 
+        print()
+        print(f'{f"Seja bem-vindo {usuario_logado}!":^{tamanho_do_programa}}')
+        print()
+
         # Menu Principal
         escolha_principal = f.printMenu("Principal", menu_principal)
 
@@ -235,10 +240,7 @@ while not encerrar_programa:
             case 1: # Personagem
                 escolha_personagem = f.printMenu("Personagem",)
 
-            case 2: # Skills
-                escolha_skills = f.printMenu("Skills", )        
-
-            case 3: # Missões
+            case 2: # Missões
                 missoes_em_andamento_db = usuario_logado_db["Missoes em Andamento"]
 
                 cont_menu_missoes = 0
@@ -272,8 +274,8 @@ while not encerrar_programa:
                                     for recompensa_chave, recompensa_valor in missao_info_valor.items():
                                         print(f'- {recompensa_chave}: {recompensa_valor}')
                                 
-                                elif isinstance(missao_info_valor, list):
-                                    print(f'\n{missao_info_chave}:')
+                                elif isinstance(missao_info_valor, list): # Descrição
+                                    print(f'\n{missao_info_chave}:\n')
 
                                     for frase in missao_info_valor:
                                         print(f'{frase}')
@@ -284,7 +286,7 @@ while not encerrar_programa:
                             print()
                             f.linha()
 
-            case 4: # Ajuda
+            case 3: # Ajuda
                 
                 while not encerrar_menu_ajuda:
                     escolha_ajuda = f.printMenu("Ajuda", menu_ajuda )
