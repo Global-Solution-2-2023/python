@@ -63,7 +63,7 @@ usuario_logado = 'admin'
 encerrar_programa = False
 encerrar_menu_inicial = True
 encerrar_menu_personagem = False
-encerrar_menu_skill = False
+encerrar_menu_personagem_informacoes = False
 encerrar_menu_missoes = False
 encerrar_menu_ajuda = False
 
@@ -254,7 +254,13 @@ while not encerrar_programa:
                     # Se não
                     else:
 
-                        print()
+                        encerrar_menu_personagem_informacoes = {}
+
+                        escolha_informacoes = f.printMenu("Informações da Conta", encerrar_menu_personagem_informacoes)
+
+                        while not encerrar_menu_personagem_informacoes:
+
+                            print()
 
             case 2: # Missões
                 missoes_em_andamento_db = usuario_logado_db["Missoes em Andamento"]
@@ -335,8 +341,9 @@ while not encerrar_programa:
                 encerrar_programa = True
                 break
 
-        encerrar_menu_missoes = False
         encerrar_menu_personagem = False
+        encerrar_menu_personagem_informacoes = False
+        encerrar_menu_missoes = False
         # with open("dados.json", "r") as dados_json:
         #     dados_py = json.load(dados_json)
         # ----- Dump para o arquivo JSON -----
