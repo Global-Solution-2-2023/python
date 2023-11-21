@@ -188,27 +188,31 @@ while not encerrar_programa:
                     # Verificar se o usuário já existe
                     usuario_existente = False
 
-                    for usuario, valores in usuarios_db.items():
+                    if f.validar_email(email_input_cadastro):
 
-                        # Verificação de email e usuário
-                        if valores["Informacoes do Login"]['Email'] == email_input_cadastro:
+                        for usuario, valores in usuarios_db.items():
+
+                            # Verificação de email e usuário
+                            if valores["Informacoes do Login"]['Email'] == email_input_cadastro:
+                                print()
+                                f.aviso(' Erro! Email já cadastrado', tresPontos='')
+                                usuario_existente = True
+                                break
+
+                            elif valores["Informacoes do Login"]['Usuario'] == usuario_input_cadastro:
+                                print()
+                                f.aviso(' Erro! Usuário já cadastrado', tresPontos='')
+                                usuario_existente = True
+                                break
+
+                        if not usuario_existente:
+
                             print()
-                            f.aviso(' Erro! Email já cadastrado', tresPontos='')
-                            usuario_existente = True
-                            break
+                            f.aviso(' Cadastro das suas informações realizado com sucesso!', tresPontos='')
 
-                        elif valores["Informacoes do Login"]['Usuario'] == usuario_input_cadastro:
-                            print()
-                            f.aviso(' Erro! Usuário já cadastrado', tresPontos='')
-                            usuario_existente = True
-                            break
-
-                    if not usuario_existente:
-
-                        print()
-                        f.aviso(' Cadastro das suas informações realizado com sucesso!', tresPontos='')
-
-                        validar_cadastro_info = True
+                            validar_cadastro_info = True
+                    else:
+                        f.aviso(' Erro! Digite um email válido.', tresPontos='')
 
                 while not validar_cadastro_skill:
 
@@ -308,7 +312,47 @@ while not encerrar_programa:
 
                                     while not encerrar_menu_informacoes_email:
 
-                                        email_input_alterar = input("Digite o seu novo email: ")
+                                        email_existente = False
+
+                                        f.linha()
+                                        print(f"\n\033[36m{f'Email: {email_atual}':^{tamanho_do_programa}}\033[m")
+                                        print('\033[33m')
+                                        email_input_alterar = f.inputSublinhado("Digite o seu novo email: ")
+                                        print('\033[m')
+                                        f.linha()
+
+                                        if f.validar_email(email_input_alterar):
+
+                                            if email_input_alterar == email_atual:
+                                                print("\n\033[31mNão é possível alterar o email com o mesmo nome.\033[m\n")
+
+                                            else:
+
+                                                for usuario, valores in usuarios_db.items():
+                                                    if valores["Informacoes do Login"]['Email'] == email_input_alterar:
+                                                        print()
+                                                        print("\n\033[31mEmail já existente.\033[m\n")
+                                                        email_existente = True
+
+                                                if not email_existente:
+
+                                                    # ----- Leitura do arquivo JSON -----
+                                                    with open("dados.json", "r") as dados_json:
+                                                        dados_py = json.load(dados_json)
+
+                                                    usuario_logado_db = dados_py["Usuarios"][id_usuario]
+
+                                                    usuario_logado_db["Informacoes do Login"]["Email"] = email_input_alterar
+
+                                                    # ----- Dump para o arquivo JSON -----
+                                                    with open("dados.json", "w") as dados_json:
+                                                        json.dump(dados_py, dados_json)
+
+                                                    encerrar_menu_informacoes_email = True
+
+                                                    print(f"\n\033[32mEmail alterado com sucesso!\033[m")
+                                        else:
+                                            print("\n\033[31mDigite um email válido.\033[m\n")
 
                                 case 2: # Usuario
 
@@ -324,7 +368,7 @@ while not encerrar_programa:
                                         f.linha()
 
                                         if usuario_input_alterar == usuario_atual:
-                                            print("\n\033[31mNão é possível alterar o usuário com o mesmo nome.\033[m")
+                                            print("\n\033[31mNão é possível alterar o usuário com o mesmo nome.\033[m\n")
 
                                         else:
 

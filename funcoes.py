@@ -1,5 +1,6 @@
 from time import sleep
 import math
+import re
 
 # --------------------- Funções ---------------------
 
@@ -108,5 +109,12 @@ def verificarOpcao(opcoes='', menu=''):
         case _:
 
             return escolha_usuario
-        
-        
+
+# Validar email com REGEX
+def validar_email(email):
+    padrao = r'^\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    
+    if re.match(padrao, email):
+        return True
+    else:
+        return False

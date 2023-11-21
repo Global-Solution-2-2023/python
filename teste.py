@@ -48,19 +48,26 @@ from time import sleep
 #                 print(f'\n{missao_info_chave}: {missao_info_valor}')
                     
 
-a = {1:"z", 2: "y", "gb":{3.1: "b",3.2:"c"}}
+# a = {1:"z", 2: "y", "gb":{3.1: "b",3.2:"c"}}
 
-a[0] = 8
+# a[0] = 8
 
-b = {"aaa":{1: {"k":"l"}}}
+# b = {"aaa":{1: {"k":"l"}}}
 
+import re
 
-# Leitura do JSON existente
-with open("dados.json", "r") as arquivo_json:
-    dados = json.load(arquivo_json)
+def validar_email(email):
+    # Defina a expressão regular para validação de e-mail
+    padrao = r'^\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    
+    if re.match(padrao, email):
+        return True
+    else:
+        return False
 
-# Alteração dos dados (exemplo: mudando o valor de uma chave)
-dados["Usuarios"]["1"]["Informacoes do Login"]["Senha"] = "nova_senha"
-
-with open("dados.json", "w") as arquivo_json:
-    json.dump(dados, arquivo_json)
+# Exemplo de uso
+email_para_validar = "a@example.com"
+if validar_email(email_para_validar):
+    print("O e-mail é válido.")
+else:
+    print("O e-mail não é válido.")
