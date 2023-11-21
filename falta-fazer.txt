@@ -1,55 +1,7 @@
 ALTERAR NOME DO PROJETO (esta Programa X)
 
-ARRUMAR OS ERROS ABAIXO e Jogar codigo do codigo-cadastro-skill.py no app.py
-
 COLOCAR MISSOES DEPOIS DAS SKILLS NO CADASTRO E ANTES DE FINALIZAR O CADASTRO
 
+Jogar codigo do codigo-cadastro-skill.py no app.py
+
 Mandar dados do cadastro para o json
-
-------------------------------------------------------- ERROS -------------------------------------------------------
-
-1. iSSO NAO FUNCIONA MAIS NAO SEI PQ
-
-# Se o tamanho das skills escolhidas for igual a quantidade de skills, excluindo a "não praticante"
-    if len(skills_classes_disponiveis) == 0:
-        print(f'\nTodas as Classes de {skill} foram selecionadas\n')
-        validar_cadastro_skill = True
-        break
-        
-2. ESTA DANDO ERRO COM NOME_CLASSE (FOR DO CLASSE.ITEMS())
-
-
-QUANDO VC ESCOLHE TODOS, ELE SEMPRE ADICIONA O NAO PRATICANTE POR ULTIMO E EU NAO SEI O PQ
-
-EX: PRINT FINAL (EU ESCOLHI TODOS)
-
------------ Saude Mental -----------
-
-Leitura:
-- Nivel: 1
-- Subclasse: Rota das Paginas
-
-
-Nao Praticante:
-- Nao praticante (ainda)
-
-
------------ Saude Social -----------
-
-Tempo com Amigos:
-- Nivel: 1
-- Subclasse: Amizades Emergentes
-
-
-Tempo com Familia:
-- Nivel: 1
-- Subclasse: Conexoes Iniciais
-
-
-Nao Praticante:
-- Nao praticante (ainda)
-
-
-IDEIAS:
-
-- CRIAR UM DICT (COPIAR) COM OS DADOS DA CLASSE.ITEMS MAS TIRAR 

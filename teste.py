@@ -48,11 +48,18 @@ from time import sleep
 #                 print(f'\n{missao_info_chave}: {missao_info_valor}')
                     
 
-a = {1:"z", 2: "y", "gb":{3.1: "b"}}
+a = {1:"z", 2: "gb", "gb":{3.1: "b"}}
 
 # a[0] = 8
 
 # b = {"aaa":{1: {"k":"l"}}}
 
-if a["gb"].values() == 3.1:
-    print("Sim")
+c = [1, 2, 3, "A", "gb"]
+
+
+if "gb" in c:
+    print('FOI')
+else:
+    print('NAO')
+
+#print(len(c))
