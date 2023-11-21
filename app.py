@@ -39,15 +39,19 @@ menu_personagem = {
 }
 
 menu_ajuda = {
-    1 : "Para que serve uma vida saudável?",
-    2 : "Pergunta 2",
-    3 : "Pergunta 3",
-    4 : "Pergunta 4",
-    5 : "Pergunta 5",
+    1 : "Para que servem hábitos saudáveis?",
+    2 : "Como faço para ver as minhas missões?",
+    3 : "Como posso atualizar as informações da minha conta?",
+    4 : "Onde posso ver o progresso das minhas Skills?",
+    5 : "Como posso entrar em contato com o suporte?",
     0 : "Voltar para o Menu Principal"
 }
 
-respostas_ajuda = ["Para ter mais saúde.", "Resposta 2", "Resposta 3", "Resposta 4", "Resposta 5"]
+respostas_ajuda = ["Hábitos saudáveis são fundamentais para manter e melhorar a saúde física e mental. Eles contribuem para a prevenção de doenças, aumento da energia, melhoria do humor e qualidade de vida geral.",
+                   "Selecione o Menu Missões no Menu Principal.",
+                   "Você pode atualizar suas informações de conta no Menu Personagem, selecionando 'Informações da Conta'.",
+                   "Selecione o Menu Skills no Menu Personagem para ver as suas Skills.",
+                   "Para entrar em contato com o suporte do Programa X, envie um e-mail para support@programax.com."]
 
 
 # --------------------- Programa Principal ---------------------
