@@ -63,7 +63,12 @@ usuario_logado = 'admin'
 encerrar_programa = False
 encerrar_menu_inicial = True
 encerrar_menu_personagem = False
-encerrar_menu_personagem_informacoes = False
+
+encerrar_menu_informacoes = False
+encerrar_menu_informacoes_email = False
+encerrar_menu_informacoes_usuario = False
+encerrar_menu_informacoes_senha = False
+
 encerrar_menu_missoes = False
 encerrar_menu_ajuda = False
 
@@ -124,6 +129,12 @@ while not encerrar_programa:
         match escolha_inicial:
             case 1: # Login
 
+                # ----- Leitura do arquivo JSON -----
+                with open("dados.json", "r") as dados_json:
+                    dados_py = json.load(dados_json)
+
+                usuarios_db = dados_py["Usuarios"]
+
                 while not validar_login:
 
                     f.aviso('    Login    ', tresPontos='')
@@ -141,7 +152,7 @@ while not encerrar_programa:
                     for usuario, valores in usuarios_db.items():
 
                         # se o usuario do json e a senha do json for igual aos inputs
-                        if valores['Usuario'] == usuario_input_login and valores['Senha'] == senha_input_login:
+                        if valores["Informacoes do Login"]['Usuario'] == usuario_input_login and valores["Informacoes do Login"]['Senha'] == senha_input_login:
                             print()
                             f.aviso(' Login concluído com sucesso!', tresPontos='')
                             usuario_logado = usuario_input_login
@@ -184,13 +195,13 @@ while not encerrar_programa:
                     for usuario, valores in usuarios_db.items():
 
                         # Verificação de email e usuário
-                        if valores['Email'] == email_input_cadastro:
+                        if valores["Informacoes do Login"]['Email'] == email_input_cadastro:
                             print()
                             f.aviso(' Erro! Email já cadastrado', tresPontos='')
                             usuario_existente = True
                             break
 
-                        elif valores['Usuario'] == usuario_input_cadastro:
+                        elif valores["Informacoes do Login"]['Usuario'] == usuario_input_cadastro:
                             print()
                             f.aviso(' Erro! Usuário já cadastrado', tresPontos='')
                             usuario_existente = True
@@ -212,9 +223,11 @@ while not encerrar_programa:
 
                 # Novo usuário que será adicionado
                 novo_usuario = {
-                    "Email": email_input_cadastro,
-                    "Usuario": usuario_input_cadastro,
-                    "Senha": senha_input_cadastro,
+                    "Informacoes do Login": {
+                        "Email": email_input_cadastro,
+                        "Usuario": usuario_input_cadastro,
+                        "Senha": senha_input_cadastro
+                    },
                     "Skills": "",
                     "Missoes em Andamento": ""
                 }
@@ -225,12 +238,11 @@ while not encerrar_programa:
                 with open("dados.json", "w") as dados_json:
                     json.dump(dados_py, dados_json)
 
-
             case 0: # Sair do programa
                 encerrar_programa = True
                 encerrar_menu_inicial = True
 
-    if not encerrar_programa: # se usuário não quiser sair no Menu Inicial
+    if not encerrar_programa: # se usuário não quiser sairdo programa no Menu Inicial
 
         usuario_logado_db = dados_py["Usuarios"][usuario_logado] # Carregar dados json do usuário logado
 
@@ -253,14 +265,73 @@ while not encerrar_programa:
                     
                     # Se não
                     else:
+                        
+                        menu_personagem_informacoes = {}
+                        cont = 0
+                        for k, v in usuario_logado_db["Informacoes do Login"].items():
+                            cont += 1
+                            menu_personagem_informacoes[cont] = f"{k}: {v}"
 
-                        encerrar_menu_personagem_informacoes = {}
+                        while not encerrar_menu_informacoes:
 
-                        escolha_informacoes = f.printMenu("Informações da Conta", encerrar_menu_personagem_informacoes)
+                            escolha_informacoes = f.printMenu("Informações de Login", menu_personagem_informacoes)
 
-                        while not encerrar_menu_personagem_informacoes:
+                            match escolha_informacoes:
+                                
+                                case 1: # Email
 
-                            print()
+                                    while not encerrar_menu_informacoes_email:
+
+                                        email_input_alterar = input("Digite o seu novo email: ")
+
+
+                                case 2: # Usuario
+
+                                    while not encerrar_menu_informacoes_usuario:
+
+                                        usuario_input_alterar = input("Digite o seu novo usuário: ")
+
+
+                                case 3: # Senha
+
+                                    while not encerrar_menu_informacoes_usuario:
+
+
+                                        f.linha()
+                                        print()
+                                        senha_input_alterar1 = input("Digite a sua nova senha: ")
+                                        senha_input_alterar2 = input("Digite novamente a sua nova senha: ")
+                                        print()
+                                        f.linha()
+
+                                        if senha_input_alterar1 == senha_input_alterar2:
+                                            if senha_input_alterar1 != usuario_logado_db["Informacoes do Login"]["Senha"]:
+
+                                                usuario_logado_db["Informacoes do Login"]["Senha"] = senha_input_alterar1
+
+                                                # ----- Dump para o arquivo JSON -----
+                                                with open("dados.json", "w") as dados_json:
+                                                    json.dump(dados_py, dados_json)
+
+                                                encerrar_menu_informacoes_usuario = True
+
+                                                print(f"\nSenhas alteradas com sucesso!")
+                                            
+                                            else:
+                                                print(f"\nA sua nova senha não pode ser a mesma da atual/")
+
+                                        else:
+                                            print(f"\nAs senhas não coincidem.")
+                            
+                            encerrar_menu_informacoes_email = False
+                            encerrar_menu_informacoes_usuario = False
+                            encerrar_menu_informacoes_senha = False
+
+
+
+
+
+
 
             case 2: # Missões
                 missoes_em_andamento_db = usuario_logado_db["Missoes em Andamento"]
@@ -342,7 +413,7 @@ while not encerrar_programa:
                 break
 
         encerrar_menu_personagem = False
-        encerrar_menu_personagem_informacoes = False
+        encerrar_menu_informacoes = False
         encerrar_menu_missoes = False
         # with open("dados.json", "r") as dados_json:
         #     dados_py = json.load(dados_json)

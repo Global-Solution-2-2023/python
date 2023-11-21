@@ -48,8 +48,8 @@ from time import sleep
 #                 print(f'\n{missao_info_chave}: {missao_info_valor}')
                     
 
-a = {1:"z", 2: "y"}
+a = {1:"z", 2: "y", "gb":{3.1: "b",3.2:"c"}}
 
 a[0] = 8
 
-print(a)
+print(a["gb"].values())

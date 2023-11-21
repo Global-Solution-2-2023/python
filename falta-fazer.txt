@@ -6,6 +6,8 @@ REGEX NO EMAIL DO CADASTRO
 
 Fazer o MENU PERSONAGEM
 
+FUNCAO PARA TRATAR STRING - login, cadastro, alterar informacoes do login (email, usuario, senha) 
+
 FINALIZA
 
 Jogar codigo do codigo-cadastro-skill.py no app.py
