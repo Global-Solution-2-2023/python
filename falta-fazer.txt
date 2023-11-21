@@ -2,6 +2,8 @@
 
 ARRUMAR OS ERROS ABAIXO e Jogar codigo do codigo-cadastro-skill.py no app.py
 
+COLOCAR MISSOES DEPOIS DAS SKILLS NO CADASTRO E ANTES DE FINALIZAR O CADASTRO
+
 Mandar dados do cadastro para o json
 
 ------------------------------------------------------- ERROS -------------------------------------------------------
