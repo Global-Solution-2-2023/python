@@ -48,26 +48,11 @@ from time import sleep
 #                 print(f'\n{missao_info_chave}: {missao_info_valor}')
                     
 
-# a = {1:"z", 2: "y", "gb":{3.1: "b",3.2:"c"}}
+a = {1:"z", 2: "y", "gb":{3.1: "b"}}
 
 # a[0] = 8
 
 # b = {"aaa":{1: {"k":"l"}}}
 
-import re
-
-def validar_email(email):
-    # Defina a expressão regular para validação de e-mail
-    padrao = r'^\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-    
-    if re.match(padrao, email):
-        return True
-    else:
-        return False
-
-# Exemplo de uso
-email_para_validar = "a@example.com"
-if validar_email(email_para_validar):
-    print("O e-mail é válido.")
-else:
-    print("O e-mail não é válido.")
+if a["gb"].values() == 3.1:
+    print("Sim")

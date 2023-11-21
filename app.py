@@ -63,7 +63,7 @@ usuario_logado = 'admin1'
 encerrar_programa = False
 encerrar_menu_inicial = True
 encerrar_menu_personagem = False
-
+encerrar_menu_skills = False
 encerrar_menu_informacoes = False
 encerrar_menu_informacoes_email = False
 encerrar_menu_informacoes_usuario = False
@@ -257,176 +257,290 @@ while not encerrar_programa:
                     
                     # Se não
                     else:
+
+                        match escolha_personagem:
+
+                            case 1: # Informações
                         
-                        # Adicionar os dados do Usuario (JSON) no Menu
-                        menu_personagem_informacoes = {}
-                        cont = 0
-                        for k in usuario_logado_db["Informacoes do Login"].keys():
-                            cont += 1
-                            menu_personagem_informacoes[cont] = f"{k}"
-                        menu_personagem_informacoes[0] = "Voltar para o Menu Personagem"
+                                # Adicionar os dados do Usuario (JSON) no Menu
+                                menu_personagem_informacoes = {}
+                                cont = 0
+                                for k in usuario_logado_db["Informacoes do Login"].keys():
+                                    cont += 1
+                                    menu_personagem_informacoes[cont] = f"{k}"
+                                menu_personagem_informacoes[0] = "Voltar para o Menu Personagem"
 
+                                while not encerrar_menu_informacoes:
 
-                        while not encerrar_menu_informacoes:
+                                    # ----- Leitura do arquivo JSON -----
+                                    with open("dados.json", "r") as dados_json:
+                                        dados_py = json.load(dados_json)
 
-                            # ----- Leitura do arquivo JSON -----
-                            with open("dados.json", "r") as dados_json:
-                                dados_py = json.load(dados_json)
+                                    usuario_logado_db = dados_py["Usuarios"][id_usuario]
 
-                            usuario_logado_db = dados_py["Usuarios"][id_usuario]
+                                    # Informações do Login 
+                                    email_atual = usuario_logado_db["Informacoes do Login"]["Email"]
+                                    usuario_atual = usuario_logado_db["Informacoes do Login"]["Usuario"]
+                                    senha_atual = usuario_logado_db["Informacoes do Login"]["Senha"]
 
-                            # Informações do Login 
-                            email_atual = usuario_logado_db["Informacoes do Login"]["Email"]
-                            usuario_atual = usuario_logado_db["Informacoes do Login"]["Usuario"]
-                            senha_atual = usuario_logado_db["Informacoes do Login"]["Senha"]
+                                    escolha_informacoes = f.printMenu("Informações de Login", menu_personagem_informacoes)
 
-                            escolha_informacoes = f.printMenu("Informações de Login", menu_personagem_informacoes)
-
-                            match escolha_informacoes:
-                                
-                                case 1: # Email
-
-                                    while not encerrar_menu_informacoes_email:
-
-                                        email_existente = False
-
-                                        f.linha()
-                                        print(f"\n\033[36m{f'Email: {email_atual}':^{tamanho_do_programa}}\033[m")
-                                        print('\033[33m')
+                                    match escolha_informacoes:
                                         
-                                        email_input_alterar = f.tratarErroStr("Digite o seu novo email: ")
-                                        print('\033[m')
-                                        f.linha()
+                                        case 1: # Email
 
-                                        if f.validarEmail(email_input_alterar):
+                                            while not encerrar_menu_informacoes_email:
 
-                                            if email_input_alterar == email_atual:
-                                                print("\n\033[31mNão é possível alterar o email com o mesmo nome.\033[m\n")
+                                                email_existente = False
 
-                                            else:
+                                                f.linha()
+                                                print(f"\n\033[36m{f'Email: {email_atual}':^{tamanho_do_programa}}\033[m")
+                                                print('\033[33m')
+                                                
+                                                email_input_alterar = f.tratarErroStr("Digite o seu novo email: ")
+                                                print('\033[m')
+                                                f.linha()
 
-                                                for usuario, valores in usuarios_db.items():
-                                                    if valores["Informacoes do Login"]['Email'] == email_input_alterar:
-                                                        print()
-                                                        print("\n\033[31mEmail já existente.\033[m\n")
-                                                        email_existente = True
+                                                if f.validarEmail(email_input_alterar):
 
-                                                if not email_existente:
+                                                    if email_input_alterar == email_atual:
+                                                        print("\n\033[31mNão é possível alterar o email com o mesmo nome.\033[m\n")
 
-                                                    # ----- Leitura do arquivo JSON -----
-                                                    with open("dados.json", "r") as dados_json:
-                                                        dados_py = json.load(dados_json)
+                                                    else:
 
-                                                    usuario_logado_db = dados_py["Usuarios"][id_usuario]
+                                                        for usuario, valores in usuarios_db.items():
+                                                            if valores["Informacoes do Login"]['Email'] == email_input_alterar:
+                                                                print()
+                                                                print("\n\033[31mEmail já existente.\033[m\n")
+                                                                email_existente = True
 
-                                                    usuario_logado_db["Informacoes do Login"]["Email"] = email_input_alterar
+                                                        if not email_existente:
 
-                                                    # ----- Dump para o arquivo JSON -----
-                                                    with open("dados.json", "w") as dados_json:
-                                                        json.dump(dados_py, dados_json)
+                                                            # ----- Leitura do arquivo JSON -----
+                                                            with open("dados.json", "r") as dados_json:
+                                                                dados_py = json.load(dados_json)
 
-                                                    encerrar_menu_informacoes_email = True
+                                                            usuario_logado_db = dados_py["Usuarios"][id_usuario]
 
-                                                    print(f"\n\033[32mEmail alterado com sucesso!\033[m")
-                                        else:
-                                            print("\n\033[31mDigite um email válido.\033[m\n")
+                                                            usuario_logado_db["Informacoes do Login"]["Email"] = email_input_alterar
 
-                                case 2: # Usuario
+                                                            # ----- Dump para o arquivo JSON -----
+                                                            with open("dados.json", "w") as dados_json:
+                                                                json.dump(dados_py, dados_json)
 
-                                    while not encerrar_menu_informacoes_usuario:
+                                                            encerrar_menu_informacoes_email = True
 
-                                        usuario_existente = False
+                                                            print(f"\n\033[32mEmail alterado com sucesso!\033[m")
+                                                else:
+                                                    print("\n\033[31mDigite um email válido.\033[m\n")
 
-                                        f.linha()
-                                        print(f"\n\033[36m{f'Usuário: {usuario_atual}':^{tamanho_do_programa}}\033[m")
-                                        print('\033[33m')
-                                        usuario_input_alterar = f.tratarErroStr("Digite o seu novo usuário: ")
-                                        print('\033[m')
-                                        f.linha()
+                                        case 2: # Usuario
 
-                                        if usuario_input_alterar == usuario_atual:
-                                            print("\n\033[31mNão é possível alterar o usuário com o mesmo nome.\033[m\n")
+                                            while not encerrar_menu_informacoes_usuario:
 
-                                        else:
+                                                usuario_existente = False
 
-                                            for usuario, valores in usuarios_db.items():
-                                                if valores["Informacoes do Login"]['Usuario'] == usuario_input_alterar:
-                                                    print()
-                                                    print("\n\033[31mUsuário já existente.\033[m\n")
-                                                    usuario_existente = True
+                                                f.linha()
+                                                print(f"\n\033[36m{f'Usuário: {usuario_atual}':^{tamanho_do_programa}}\033[m")
+                                                print('\033[33m')
+                                                usuario_input_alterar = f.tratarErroStr("Digite o seu novo usuário: ")
+                                                print('\033[m')
+                                                f.linha()
 
-                                            if not usuario_existente:
+                                                if usuario_input_alterar == usuario_atual:
+                                                    print("\n\033[31mNão é possível alterar o usuário com o mesmo nome.\033[m\n")
 
-                                                # ----- Leitura do arquivo JSON -----
-                                                with open("dados.json", "r") as dados_json:
-                                                    dados_py = json.load(dados_json)
+                                                else:
 
-                                                usuario_logado_db = dados_py["Usuarios"][id_usuario]
+                                                    for usuario, valores in usuarios_db.items():
+                                                        if valores["Informacoes do Login"]['Usuario'] == usuario_input_alterar:
+                                                            print()
+                                                            print("\n\033[31mUsuário já existente.\033[m\n")
+                                                            usuario_existente = True
 
-                                                usuario_logado_db["Informacoes do Login"]["Usuario"] = usuario_input_alterar
+                                                    if not usuario_existente:
 
-                                                # ----- Dump para o arquivo JSON -----
-                                                with open("dados.json", "w") as dados_json:
-                                                    json.dump(dados_py, dados_json)
+                                                        # ----- Leitura do arquivo JSON -----
+                                                        with open("dados.json", "r") as dados_json:
+                                                            dados_py = json.load(dados_json)
 
-                                                encerrar_menu_informacoes_usuario = True
+                                                        usuario_logado_db = dados_py["Usuarios"][id_usuario]
 
-                                                usuario_logado = usuario_input_alterar
+                                                        usuario_logado_db["Informacoes do Login"]["Usuario"] = usuario_input_alterar
 
-                                                print(f"\n\033[32mUsuário alterado com sucesso!\033[m")
-                                           
-                                case 3: # Senha
+                                                        # ----- Dump para o arquivo JSON -----
+                                                        with open("dados.json", "w") as dados_json:
+                                                            json.dump(dados_py, dados_json)
 
-                                    while not encerrar_menu_informacoes_usuario:
+                                                        encerrar_menu_informacoes_usuario = True
 
-                                        f.linha()
-                                        print(f"\n\033[36m{f'Senha: {senha_atual}':^{tamanho_do_programa}}\033[m")
-                                        print('\033[33m')
-                                        senha_input_alterar1 = f.tratarErroStr("Digite a sua nova senha: ")
-                                        print()
-                                        senha_input_alterar2 = f.tratarErroStr("Digite novamente a sua nova senha: ")
-                                        print('\033[m')
-                                        f.linha()
+                                                        usuario_logado = usuario_input_alterar
 
-                                        if senha_input_alterar1 == senha_input_alterar2:
-                                            if senha_input_alterar1 != senha_atual:
+                                                        print(f"\n\033[32mUsuário alterado com sucesso!\033[m")
+                                                
+                                        case 3: # Senha
 
-                                                # ----- Leitura do arquivo JSON -----
-                                                with open("dados.json", "r") as dados_json:
-                                                    dados_py = json.load(dados_json)
+                                            while not encerrar_menu_informacoes_usuario:
 
-                                                usuario_logado_db = dados_py["Usuarios"][id_usuario]
+                                                f.linha()
+                                                print(f"\n\033[36m{f'Senha: {senha_atual}':^{tamanho_do_programa}}\033[m")
+                                                print('\033[33m')
+                                                senha_input_alterar1 = f.tratarErroStr("Digite a sua nova senha: ")
+                                                print()
+                                                senha_input_alterar2 = f.tratarErroStr("Digite novamente a sua nova senha: ")
+                                                print('\033[m')
+                                                f.linha()
 
-                                                usuario_logado_db["Informacoes do Login"]["Senha"] = senha_input_alterar1
+                                                if senha_input_alterar1 == senha_input_alterar2:
+                                                    if senha_input_alterar1 != senha_atual:
 
-                                                # ----- Dump para o arquivo JSON -----
-                                                with open("dados.json", "w") as dados_json:
-                                                    json.dump(dados_py, dados_json)
+                                                        # ----- Leitura do arquivo JSON -----
+                                                        with open("dados.json", "r") as dados_json:
+                                                            dados_py = json.load(dados_json)
 
-                                                encerrar_menu_informacoes_usuario = True
+                                                        usuario_logado_db = dados_py["Usuarios"][id_usuario]
 
-                                                print(f"\n\033[32mSenha alterada com sucesso!\033[m")
+                                                        usuario_logado_db["Informacoes do Login"]["Senha"] = senha_input_alterar1
+
+                                                        # ----- Dump para o arquivo JSON -----
+                                                        with open("dados.json", "w") as dados_json:
+                                                            json.dump(dados_py, dados_json)
+
+                                                        encerrar_menu_informacoes_usuario = True
+
+                                                        print(f"\n\033[32mSenha alterada com sucesso!\033[m")
+                                                    
+                                                    else:
+                                                        print(f"\n\033[31mA sua nova senha não pode ser a mesma da atual\033[m\n")
+
+                                                else:
+                                                    print(f"\n\033[31mAs senhas não coincidem.\033[m\n")
+
+                                        case 0:
+                                            f.aviso("Voltando para o Menu", "Personagem")
+
+                                            break
+
+                                    encerrar_menu_informacoes_email = False
+                                    encerrar_menu_informacoes_usuario = False
+                                    encerrar_menu_informacoes_senha = False
+
+                            case 2: # Skills
+
+                                # Adicionar os dados do Usuario (JSON) no Menu
+                                menu_personagem_skills = {}
+                                cont = 0
+                                for k in usuario_logado_db["Skills"].keys():
+                                    cont += 1
+                                    menu_personagem_skills[cont] = f"{k}"
+
+                                # Se tiver 2 Skill Tree - Adicionar Todas como opção
+                                if len(menu_personagem_skills) == 2:
+                                    menu_personagem_skills[3] = "Todas"
+
+                                menu_personagem_skills[0] = "Voltar para o Menu Personagem"
+
+                                while not encerrar_menu_skills:
+
+                                    # ----- Leitura do arquivo JSON -----
+                                    with open("dados.json", "r") as dados_json:
+                                        dados_py = json.load(dados_json)
+
+                                    usuario_logado_db = dados_py["Usuarios"][id_usuario]
+
+                                    escolha_skills = f.printMenu("Skills", menu_personagem_skills)
+
+                                    if escolha_skills == 0:
+                                        encerrar_menu_skills = True
+                                        f.aviso("Voltando para o Menu", "Personagem")
+
+                                    else:
+
+                                        if len(menu_personagem_skills) == 2 or escolha_skills == 3: # Se tiver 1 Skill Tree
+
+                                            # Print das Skills Trees das Skills
+                                            for skill_tree, dados_skill_tree in usuario_logado_db["Skills"].items():
+                                                sleep(1)
+                                                print()
+                                                print(f'\033[36m{skill_tree:^{tamanho_do_programa}}\033[m')
+                                                f.linha()
+
+                                                # Dados Skill Tree
+                                                for classe, dados_classe in dados_skill_tree.items():
+                                                    sleep(0.5)
+                                                    print(f'\n\n\033[34m{classe}:\033[m')
+                                                    sleep(1)
+
+                                                    # Se for um diocionário
+                                                    if isinstance(dados_classe, dict):
+                                                        for k, v in dados_classe.items():
+                                                            print(f'- \033[32m{k}:\033[m {v}')
+                                                            sleep(1)
+                                                    else:
+                                                        print(f'- \033[32m{dados_classe}\033[m')
+                                                print()
+                                                print()
+                                                f.linha()
+                                                sleep(1)
+
+                                        elif len(menu_personagem_skills) == 4: # Se tiver mais de 1 Skill Tree
                                             
-                                            else:
-                                                print(f"\n\033[31mA sua nova senha não pode ser a mesma da atual\033[m\n")
+                                            # Se for só uma
 
-                                        else:
-                                            print(f"\n\033[31mAs senhas não coincidem.\033[m\n")
 
-                                case 0:
-                                    f.aviso("Voltando para o Menu", "Personagem")
+                                            # Print das Skills Trees das Skills
+                                            for skill_tree, dados_skill_tree in usuario_logado_db["Skills"].items():
 
-                                    break
+                                                sleep(1)
+                                                print()
+                                                if escolha_skills == 1 and skill_tree == "Saude Fisica": # Saude Fisica
+                                                    print(f'\033[36m{skill_tree:^{tamanho_do_programa}}\033[m')
+                                                    f.linha()
 
-                            encerrar_menu_informacoes_email = False
-                            encerrar_menu_informacoes_usuario = False
-                            encerrar_menu_informacoes_senha = False
+                                                    # Dados Skill Tree
+                                                    for classe, dados_classe in dados_skill_tree.items():
+                                                        sleep(0.5)
+                                                        print(f'\n\n\033[33m{classe}:\033[m')
+                                                        sleep(1)
 
+                                                        # Se for um diocionário
+                                                        if isinstance(dados_classe, dict):
+                                                            for k, v in dados_classe.items():
+                                                                print(f'- \033[32m{k}:\033[m {v}')
+                                                                sleep(1)
+                                                        else:
+                                                            print(f'- \033[32m{dados_classe}\033[m')
+                                                    print()
+                                                    print()
+                                                    f.linha()
+                                                    sleep(2)
+
+                                                elif escolha_skills == 2 and skill_tree == "Saude Mental": # Saude Mental
+                                                    print(f'\033[36m{skill_tree:^{tamanho_do_programa}}\033[m')
+                                                    f.linha()
+
+                                                    # Dados Skill Tree
+                                                    for classe, dados_classe in dados_skill_tree.items():
+                                                        sleep(0.5)
+                                                        print(f'\n\n\033[33m{classe}:\033[m')
+                                                        sleep(1)
+
+                                                        # Se for um diocionário
+                                                        if isinstance(dados_classe, dict):
+                                                            for k, v in dados_classe.items():
+                                                                print(f'- \033[32m{k}:\033[m {v}')
+                                                                sleep(1)
+                                                        else:
+                                                            print(f'- \033[32m{dados_classe}\033[m')
+                                                    print()
+                                                    print()
+                                                    f.linha()
+                                                    sleep(2)
+                                                                                
             case 2: # Missões
                 missoes_em_andamento_db = usuario_logado_db["Missoes em Andamento"]
 
                 cont_menu_missoes = 0
-
                 # Para cada Classe em Missoes em Andamento
                 for missoes_classes in missoes_em_andamento_db.keys(): 
                     # Numero de missoes:
@@ -489,21 +603,28 @@ while not encerrar_programa:
                 while not encerrar_menu_ajuda:
                     escolha_ajuda = f.printMenu("Ajuda", menu_ajuda )
 
-                    print()
-                    f.linha()
-                    print()
-                    print(respostas_ajuda[escolha_ajuda-1])
-                    print()
-                    f.linha()
-                    sleep(1.5)
+                    if escolha_ajuda == 0:
+                        encerrar_menu_ajuda = True
+                        f.aviso("Voltando para o Menu", "Principal")
+                        
+                    else:
+                        print()
+                        f.linha()
+                        print()
+                        print(respostas_ajuda[escolha_ajuda-1])
+                        print()
+                        f.linha()
+                        sleep(1.5)
 
             case 0: # Sair
                 encerrar_programa = True
                 break
 
         encerrar_menu_personagem = False
-        encerrar_menu_informacoes = False
         encerrar_menu_missoes = False
+        encerrar_menu_ajuda = False
+
+
         # with open("dados.json", "r") as dados_json:
         #     dados_py = json.load(dados_json)
         # ----- Dump para o arquivo JSON -----
