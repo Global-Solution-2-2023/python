@@ -56,8 +56,11 @@ for skill, classe in skills_db.items(): # skill -> Saude X  |  classe -> { class
                 for nome_classe, nome_subclasse in classe.items(): # nome_classe -> Nome da Classe (ex: Corredor)  |  Subclasse da Classe com intervalo de nivel e nome (ex: "1 - 10": "Base firme")
                     cont+=1
                     print(cont)
+                    sleep(0.5)
                     print(f"\nNome classe do loop: {nome_classe}")
+                    sleep(0.5)
                     print(f"Nome classe escolhida: {nome_classe_escolhida}\n")
+                    sleep(0.5)
                     
                     # Se a classe escolhida for igual ao nome da classe atual no loop ALTERAR ISSO, ESTA DANDO ERRO
                     if nome_classe_escolhida == nome_classe:

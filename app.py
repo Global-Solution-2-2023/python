@@ -536,7 +536,10 @@ while not encerrar_programa:
                                                     print()
                                                     f.linha()
                                                     sleep(2)
-                                                                                
+
+                        encerrar_menu_informacoes = False
+                        encerrar_menu_skills = False
+                                                                    
             case 2: # Missões
                 missoes_em_andamento_db = usuario_logado_db["Missoes em Andamento"]
 
