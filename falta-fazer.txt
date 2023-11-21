@@ -1,20 +1,13 @@
-Criar Missoes para as skils que faltam
-
-Mudar missoes para dentro das skills
-
 REGEX NO EMAIL DO CADASTRO E NA ALTERACAO DE EMAIL
 
-Fazer o MENU PERSONAGEM
+Fazer o MENU PERSONAGEM -> quase feito, falta ALTERAR EMAIL E SKILSS
 
 FUNCAO PARA TRATAR STRING - login, cadastro, alterar informacoes do login (email, usuario, senha) 
-
-FINALIZA
-
-Jogar codigo do codigo-cadastro-skill.py no app.py
 
 Mandar dados do cadastro para o json
 
 
+ARRUMAR OS ABAIXO e Jogar codigo do codigo-cadastro-skill.py no app.py
 
 ------------------------------------------------------- ERROS
 
