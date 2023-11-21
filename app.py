@@ -92,30 +92,6 @@ while not encerrar_programa:
     f.linha(tamanho_do_programa//2, '=-')
     print()
 
-    # # SIMULAR NIVEL DO ADMIN NA SKILL 
-    # ----- Leitura do arquivo JSON -----
-    #with open("dados.json", "r") as dados_json:
-    #     dados_py = json.load(dados_json)
-
-    #usuarios_db = dados_py["Usuarios"]
-
-    # # Calcular nível da Skill Corredor do usuário admin
-    # nivel_admin_corredor = random.randint(nivel_min, nivel_max)
-
-    # usuarios_db["admin"]["Skills"]["Corredor"]["Nivel"] = nivel_admin_corredor
-
-    # if nivel_admin_corredor <= 10:
-    #     usuarios_db["admin"]["Skills"]["Corredor"]["Subclasse"] = 'Passo inicial'
-    # elif 10 < nivel_admin_corredor <= 20:
-    #     usuarios_db["admin"]["Skills"]["Corredor"]["Subclasse"] = 'Ritmo Crescente'
-    # else:
-    #     usuarios_db["admin"]["Skills"]["Corredor"]["Subclasse"] = 'Vento nas coxas'
-
-    # # ----- Dump para o arquivo JSON -----
-    # with open("dados.json", "w") as dados_json:
-    #     json.dump(dados_py, dados_json)
-
-
     # ----- Login | Cadastro -----
 
     while not encerrar_menu_inicial:

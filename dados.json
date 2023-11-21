@@ -7,9 +7,17 @@
                 "Senha": "1234"
             },
             "Skills": {
-                "Corredor": {
-                    "Nivel": 7,
-                    "Subclasse": "Passo inicial"
+                "Saude Fisica": {
+                    "Corredor": {
+                        "Nivel": 7,
+                        "Subclasse": "Passo inicial"
+                    }
+                },
+                "Saude Mental": {
+                    "Meditacao": {
+                        "Nivel": 24,
+                        "Subclasse": "Paz de Espirito"
+                    }
                 }
             },
             "Missoes em Andamento": {

@@ -2,9 +2,9 @@ Fazer o MENU PERSONAGEM -> quase feito falta SKILSS
 
 FUNCAO PARA TRATAR STRING - login, cadastro, alterar informacoes do login (email, usuario, senha) 
 
-Mandar dados do cadastro para o json
-
 ARRUMAR OS ABAIXO e Jogar codigo do codigo-cadastro-skill.py no app.py
+
+Mandar dados do cadastro para o json
 
 ------------------------------------------------------- ERROS
 
