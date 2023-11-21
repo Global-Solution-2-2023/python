@@ -1,9 +1,39 @@
 {
     "Usuarios": {
-        "admin": {
+        "1": {
             "Informacoes do Login": {
                 "Email": "admin@gmail.com",
-                "Usuario": "admin",
+                "Usuario": "admin1",
+                "Senha": "1234"
+            },
+            "Skills": {
+                "Corredor": {
+                    "Nivel": 7,
+                    "Subclasse": "Passo inicial"
+                }
+            },
+            "Missoes em Andamento": {
+                "Corredor": {
+                    "1": {
+                        "Nome da Missao": "Corredor Destemido",
+                        "Descricao": [
+                            "Os White Walkers estao ameacando os cidadaos indefesos da Terra da Corrida.",
+                            "Embarque nesta jornada epica para salvar a populacao!",
+                            "Sua tarefa eh correr 10 km em um prazo de 1 semana para fortalecer sua resistencia e preparar-se para o confronto iminente com os White Walkers."
+                        ],
+                        "Duracao": "1 semana",
+                        "Resompensas": {
+                            "XP": 50,
+                            "Gold": "100g"
+                        }
+                    }
+                }
+            }
+        },
+        "2": {
+            "Informacoes do Login": {
+                "Email": "admin@gmail.com",
+                "Usuario": "admin2",
                 "Senha": "1234"
             },
             "Skills": {

@@ -52,4 +52,15 @@ a = {1:"z", 2: "y", "gb":{3.1: "b",3.2:"c"}}
 
 a[0] = 8
 
-print(a["gb"].values())
+b = {"aaa":{1: {"k":"l"}}}
+
+
+# Leitura do JSON existente
+with open("dados.json", "r") as arquivo_json:
+    dados = json.load(arquivo_json)
+
+# Alteração dos dados (exemplo: mudando o valor de uma chave)
+dados["Usuarios"]["1"]["Informacoes do Login"]["Senha"] = "nova_senha"
+
+with open("dados.json", "w") as arquivo_json:
+    json.dump(dados, arquivo_json)

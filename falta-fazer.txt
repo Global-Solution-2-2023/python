@@ -1,8 +1,8 @@
 Criar Missoes para as skils que faltam
 
-Mudar missoes para dentro das skills e separa-las por intervalo de nivel
+Mudar missoes para dentro das skills
 
-REGEX NO EMAIL DO CADASTRO 
+REGEX NO EMAIL DO CADASTRO E NA ALTERACAO DE EMAIL
 
 Fazer o MENU PERSONAGEM
 

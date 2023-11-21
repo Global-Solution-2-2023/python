@@ -55,7 +55,7 @@ respostas_ajuda = ["Para ter mais saúde.", "Resposta 2", "Resposta 3", "Respost
 # ---------- Variáveis ---------- 
 
 tamanho_do_programa = f.tamProg('Aplicativo Programa X')
-usuario_logado = 'admin'
+usuario_logado = 'admin1'
 
 # ------ Variáveis de controle dos while ------
 
@@ -78,11 +78,7 @@ validar_cadastro_info = False
 validar_cadastro_skill = False
 
 # Constantes
-with open("dados.json", "r") as dados_json:
-    dados_py = json.load(dados_json)
 
-skills_db = dados_py["Skills"]
-missoes_db = dados_py["Missoes"]
 nivel_min = 1
 nivel_max = 30
 
@@ -97,11 +93,11 @@ while not encerrar_programa:
     print()
 
     # # SIMULAR NIVEL DO ADMIN NA SKILL 
-    # # ----- Leitura do arquivo JSON -----
-    # with open("dados.json", "r") as dados_json:
+    # ----- Leitura do arquivo JSON -----
+    #with open("dados.json", "r") as dados_json:
     #     dados_py = json.load(dados_json)
 
-    # usuarios_db = dados_py["Usuarios"]
+    #usuarios_db = dados_py["Usuarios"]
 
     # # Calcular nível da Skill Corredor do usuário admin
     # nivel_admin_corredor = random.randint(nivel_min, nivel_max)
@@ -181,11 +177,11 @@ while not encerrar_programa:
                     print(f'\033[36m{f"Insira suas informações pessoais":^{tamanho_do_programa}}\033[m')
                     f.linha()
                     print()
-                    email_input_cadastro = input('\033[33mEmail: \033[m')
+                    email_input_cadastro = f.inputSublinhado('\033[33mEmail: \033[m')
                     print()
-                    usuario_input_cadastro= input('\033[33mUsuário: \033[m')
+                    usuario_input_cadastro = f.inputSublinhado('\033[33mUsuário: \033[m')
                     print()
-                    senha_input_cadastro = input('\033[33mSenha: \033[m')
+                    senha_input_cadastro = f.inputSublinhado('\033[33mSenha: \033[m')
                     print()
                     f.linha()
 
@@ -232,7 +228,7 @@ while not encerrar_programa:
                     "Missoes em Andamento": ""
                 }
 
-                usuarios_db[usuario_input_cadastro] = novo_usuario
+                usuarios_db[len(usuarios_db)+1] = novo_usuario
 
                 # ----- Dump para o arquivo JSON -----
                 with open("dados.json", "w") as dados_json:
@@ -244,10 +240,24 @@ while not encerrar_programa:
 
     if not encerrar_programa: # se usuário não quiser sairdo programa no Menu Inicial
 
-        usuario_logado_db = dados_py["Usuarios"][usuario_logado] # Carregar dados json do usuário logado
+        # ----- Leitura do arquivo JSON -----
+        with open("dados.json", "r") as dados_json:
+            dados_py = json.load(dados_json)
+
+        usuarios_db = dados_py["Usuarios"]
+
+        for id_usuario_loop, usuario_dados in usuarios_db.items():
+            for k, v in usuario_dados.items():
+                if k == "Informacoes do Login" and v["Usuario"] == usuario_logado:
+                    if v["Usuario"] == usuario_logado:
+                        usuario_logado_db = dados_py["Usuarios"][id_usuario_loop] # Carregar dados json do usuário logado
+                        id_usuario = id_usuario_loop
+                        break
+
+        usuario_logado_bem_vindo = usuario_logado_db["Informacoes do Login"]["Usuario"]
 
         print()
-        print(f'\033[33m{f"Seja bem-vindo {usuario_logado}!":^{tamanho_do_programa}}\033[m')
+        print(f'\033[33m{f"Seja bem-vindo {usuario_logado_bem_vindo}!":^{tamanho_do_programa}}\033[m')
         print()
 
         # Menu Principal
@@ -257,22 +267,38 @@ while not encerrar_programa:
             case 1: # Personagem
 
                 while not encerrar_menu_personagem:
+
                     escolha_personagem = f.printMenu("Personagem", menu_personagem)
 
                     # Se quiser voltar para o Menu Principal
                     if escolha_personagem == 0:
                         encerrar_menu_personagem = True
+                        f.aviso("Voltando para o Menu", "Principal")
                     
                     # Se não
                     else:
                         
+                        # Adicionar os dados do Usuario (JSON) no Menu
                         menu_personagem_informacoes = {}
                         cont = 0
-                        for k, v in usuario_logado_db["Informacoes do Login"].items():
+                        for k in usuario_logado_db["Informacoes do Login"].keys():
                             cont += 1
-                            menu_personagem_informacoes[cont] = f"{k}: {v}"
+                            menu_personagem_informacoes[cont] = f"{k}"
+                        menu_personagem_informacoes[0] = "Voltar para o Menu Personagem"
+
 
                         while not encerrar_menu_informacoes:
+
+                            # ----- Leitura do arquivo JSON -----
+                            with open("dados.json", "r") as dados_json:
+                                dados_py = json.load(dados_json)
+
+                            usuario_logado_db = dados_py["Usuarios"][id_usuario]
+
+                            # Informações do Login 
+                            email_atual = usuario_logado_db["Informacoes do Login"]["Email"]
+                            usuario_atual = usuario_logado_db["Informacoes do Login"]["Usuario"]
+                            senha_atual = usuario_logado_db["Informacoes do Login"]["Senha"]
 
                             escolha_informacoes = f.printMenu("Informações de Login", menu_personagem_informacoes)
 
@@ -284,28 +310,71 @@ while not encerrar_programa:
 
                                         email_input_alterar = input("Digite o seu novo email: ")
 
-
                                 case 2: # Usuario
 
                                     while not encerrar_menu_informacoes_usuario:
 
-                                        usuario_input_alterar = input("Digite o seu novo usuário: ")
+                                        usuario_existente = False
 
+                                        f.linha()
+                                        print(f"\n\033[36m{f'Usuário: {usuario_atual}':^{tamanho_do_programa}}\033[m")
+                                        print('\033[33m')
+                                        usuario_input_alterar = f.inputSublinhado("Digite o seu novo usuário: ")
+                                        print('\033[m')
+                                        f.linha()
 
+                                        if usuario_input_alterar == usuario_atual:
+                                            print("\n\033[31mNão é possível alterar o usuário com o mesmo nome.\033[m")
+
+                                        else:
+
+                                            for usuario, valores in usuarios_db.items():
+                                                if valores["Informacoes do Login"]['Usuario'] == usuario_input_alterar:
+                                                    print()
+                                                    print("\n\033[31mUsuário já existente.\033[m\n")
+                                                    usuario_existente = True
+
+                                            if not usuario_existente:
+
+                                                # ----- Leitura do arquivo JSON -----
+                                                with open("dados.json", "r") as dados_json:
+                                                    dados_py = json.load(dados_json)
+
+                                                usuario_logado_db = dados_py["Usuarios"][id_usuario]
+
+                                                usuario_logado_db["Informacoes do Login"]["Usuario"] = usuario_input_alterar
+
+                                                # ----- Dump para o arquivo JSON -----
+                                                with open("dados.json", "w") as dados_json:
+                                                    json.dump(dados_py, dados_json)
+
+                                                encerrar_menu_informacoes_usuario = True
+
+                                                usuario_logado = usuario_input_alterar
+
+                                                print(f"\n\033[32mUsuário alterado com sucesso!\033[m")
+                                           
                                 case 3: # Senha
 
                                     while not encerrar_menu_informacoes_usuario:
 
-
                                         f.linha()
+                                        print(f"\n\033[36m{f'Senha: {senha_atual}':^{tamanho_do_programa}}\033[m")
+                                        print('\033[33m')
+                                        senha_input_alterar1 = f.inputSublinhado("Digite a sua nova senha: ")
                                         print()
-                                        senha_input_alterar1 = input("Digite a sua nova senha: ")
-                                        senha_input_alterar2 = input("Digite novamente a sua nova senha: ")
-                                        print()
+                                        senha_input_alterar2 = f.inputSublinhado("Digite novamente a sua nova senha: ")
+                                        print('\033[m')
                                         f.linha()
 
                                         if senha_input_alterar1 == senha_input_alterar2:
-                                            if senha_input_alterar1 != usuario_logado_db["Informacoes do Login"]["Senha"]:
+                                            if senha_input_alterar1 != senha_atual:
+
+                                                # ----- Leitura do arquivo JSON -----
+                                                with open("dados.json", "r") as dados_json:
+                                                    dados_py = json.load(dados_json)
+
+                                                usuario_logado_db = dados_py["Usuarios"][id_usuario]
 
                                                 usuario_logado_db["Informacoes do Login"]["Senha"] = senha_input_alterar1
 
@@ -315,23 +384,22 @@ while not encerrar_programa:
 
                                                 encerrar_menu_informacoes_usuario = True
 
-                                                print(f"\nSenhas alteradas com sucesso!")
+                                                print(f"\n\033[32mSenha alterada com sucesso!\033[m")
                                             
                                             else:
-                                                print(f"\nA sua nova senha não pode ser a mesma da atual/")
+                                                print(f"\n\033[31mA sua nova senha não pode ser a mesma da atual\033[m\n")
 
                                         else:
-                                            print(f"\nAs senhas não coincidem.")
-                            
+                                            print(f"\n\033[31mAs senhas não coincidem.\033[m\n")
+
+                                case 0:
+                                    f.aviso("Voltando para o Menu", "Personagem")
+
+                                    break
+
                             encerrar_menu_informacoes_email = False
                             encerrar_menu_informacoes_usuario = False
                             encerrar_menu_informacoes_senha = False
-
-
-
-
-
-
 
             case 2: # Missões
                 missoes_em_andamento_db = usuario_logado_db["Missoes em Andamento"]

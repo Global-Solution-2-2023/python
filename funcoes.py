@@ -15,7 +15,7 @@ def linha(tam=tamProg(),caractere='-'):
 def inputSublinhado(frase):
     escolha = input(frase)
     linha(len(frase + str(escolha)))
-    sleep(1)
+    sleep(0.5)
     return escolha
 
 # Função para "carregar" o menu
@@ -33,7 +33,7 @@ def aviso(frase='Carregando o Menu',menu='', tresPontos='... '):
     linha(len(frase_aviso), '~')
     print('\033[m')
     print()
-    sleep(1)
+    sleep(0.5)
 
 # Função para centralizar
 def centralizar(frase='', tamanho=tamProg()):
@@ -81,7 +81,7 @@ def verificarOpcao(opcoes='', menu=''):
     
         try:
             print('\033[33m')
-            escolha_usuario = int(inputSublinhado("\nEscolha uma opção: "))
+            escolha_usuario = int(inputSublinhado("Escolha uma opção: "))
             print('\033[m')
 
             if escolha_usuario not in opcoes.keys():
@@ -90,7 +90,7 @@ def verificarOpcao(opcoes='', menu=''):
                 validacao_input = True
 
         except:
-            print("Por favor, insira uma opção válida\n")
+            print("\033[31mPor favor, insira uma opção válida\033[m\n")
 
     # Opções
     match escolha_usuario:
