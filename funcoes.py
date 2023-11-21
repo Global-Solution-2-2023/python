@@ -73,7 +73,7 @@ def printMenu(titulo="",opcoes={},tamanho=tamProg(), menu='Menu '):
     sleep(1)
     return escolha_usuario
 
-# Tratamento de erro e verificar opção
+# Tratamento de erro de int e verificar opção
 def verificarOpcao(opcoes='', menu=''):
 
     validacao_input = False
@@ -109,9 +109,30 @@ def verificarOpcao(opcoes='', menu=''):
         case _:
 
             return escolha_usuario
+        
+# Tratamento de erro de string
+def tratarErroStr(string=''):
+    validacao_input = False
+
+    while not validacao_input:
+        try:
+            print('\033[33m')
+            entrada_usuario = inputSublinhado(string)
+            print('\033[m')
+
+            # Tratamento de erro para string vazia
+            if not entrada_usuario.strip():
+                raise ValueError
+
+            validacao_input = True
+
+        except:
+            print("\033[31mErro! A string não pode ser vazia\033[m\n")
+
+    return entrada_usuario
 
 # Validar email com REGEX
-def validar_email(email):
+def validarEmail(email):
     padrao = r'^\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
     
     if re.match(padrao, email):

@@ -114,9 +114,9 @@ while not encerrar_programa:
                     print(f'\033[36m{f"Login":^{tamanho_do_programa}}\033[m')
                     f.linha()
                     print()
-                    usuario_input_login = input('\033[33mDigite o seu usuário: \033[m')
+                    usuario_input_login = f.tratarErroStr('Digite o seu usuário: ')
                     print()
-                    senha_input_login = input('\033[33mDigite a sua senha: \033[m')
+                    senha_input_login = f.tratarErroStr('\033[33mDigite a sua senha: \033[m')
                     print()
                     f.linha()
 
@@ -153,18 +153,18 @@ while not encerrar_programa:
                     print(f'\033[36m{f"Insira suas informações pessoais":^{tamanho_do_programa}}\033[m')
                     f.linha()
                     print()
-                    email_input_cadastro = f.inputSublinhado('\033[33mEmail: \033[m')
+                    email_input_cadastro = f.tratarErroStr('\033[33mEmail: \033[m')
                     print()
-                    usuario_input_cadastro = f.inputSublinhado('\033[33mUsuário: \033[m')
+                    usuario_input_cadastro = f.tratarErroStr('\033[33mUsuário: \033[m')
                     print()
-                    senha_input_cadastro = f.inputSublinhado('\033[33mSenha: \033[m')
+                    senha_input_cadastro = f.tratarErroStr('\033[33mSenha: \033[m')
                     print()
                     f.linha()
 
                     # Verificar se o usuário já existe
                     usuario_existente = False
 
-                    if f.validar_email(email_input_cadastro):
+                    if f.validarEmail(email_input_cadastro):
 
                         for usuario, valores in usuarios_db.items():
 
@@ -293,11 +293,12 @@ while not encerrar_programa:
                                         f.linha()
                                         print(f"\n\033[36m{f'Email: {email_atual}':^{tamanho_do_programa}}\033[m")
                                         print('\033[33m')
-                                        email_input_alterar = f.inputSublinhado("Digite o seu novo email: ")
+                                        
+                                        email_input_alterar = f.tratarErroStr("Digite o seu novo email: ")
                                         print('\033[m')
                                         f.linha()
 
-                                        if f.validar_email(email_input_alterar):
+                                        if f.validarEmail(email_input_alterar):
 
                                             if email_input_alterar == email_atual:
                                                 print("\n\033[31mNão é possível alterar o email com o mesmo nome.\033[m\n")
@@ -339,7 +340,7 @@ while not encerrar_programa:
                                         f.linha()
                                         print(f"\n\033[36m{f'Usuário: {usuario_atual}':^{tamanho_do_programa}}\033[m")
                                         print('\033[33m')
-                                        usuario_input_alterar = f.inputSublinhado("Digite o seu novo usuário: ")
+                                        usuario_input_alterar = f.tratarErroStr("Digite o seu novo usuário: ")
                                         print('\033[m')
                                         f.linha()
 
@@ -381,9 +382,9 @@ while not encerrar_programa:
                                         f.linha()
                                         print(f"\n\033[36m{f'Senha: {senha_atual}':^{tamanho_do_programa}}\033[m")
                                         print('\033[33m')
-                                        senha_input_alterar1 = f.inputSublinhado("Digite a sua nova senha: ")
+                                        senha_input_alterar1 = f.tratarErroStr("Digite a sua nova senha: ")
                                         print()
-                                        senha_input_alterar2 = f.inputSublinhado("Digite novamente a sua nova senha: ")
+                                        senha_input_alterar2 = f.tratarErroStr("Digite novamente a sua nova senha: ")
                                         print('\033[m')
                                         f.linha()
 
