@@ -35,9 +35,8 @@
                                 "XP": 50,
                                 "Gold": "100g"
                             }
-                        }
-                    },
-                    "2": {
+                        },
+                        "2": {
                         "Nome da Missao": "Exploracao dos Trilhos Distantes",
                         "Descricao": [
                             "Sinta a emocao ao explorar trilhos desconhecidos durante o Desafio dos Trilhos Distantes.",
@@ -50,77 +49,6 @@
                             "Gold": "150g",
                             "Trofeu": "Trofeu dos Velozes, uma insignia rara que aumenta sua reputacao entre os corredores"
                         }
-                    }
-                },
-                "Saude Mental": {
-                    "Leitura": {
-                        "1": {
-                            "Nome da Missao": "Odisseia dos Livros",
-                            "Descricao": [
-                                "Embarque na Odisseia dos Livros, um desafio para os amantes da leitura.",
-                                "Leia 800 paginas de diferentes generos literarios em tres semanas e expanda seus horizontes intelectuais.",
-                                "Alem das recompensas, conquiste o Trofeu Literario como reconhecimento pela sua jornada literaria."
-                            ],
-                            "Duracao": "3 semanas",
-                            "Recompensas": {
-                                "XP": 120,
-                                "Gold": "200g",
-                                "Trofeu": "Trofeu Literario, uma honra concedida apenas aos devoradores de livros mais dedicados"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "2": {
-            "Informacoes do Login": {
-                "Email": "f@f.com",
-                "Usuario": "teste",
-                "Senha": "123"
-            },
-            "Skills": {
-                "Saude Fisica": {
-                    "Corredor": {
-                        "Nivel": 1,
-                        "Subclasse": "Passo inicial"
-                    }
-                },
-                "Saude Mental": {
-                    "Leitura": {
-                        "Nivel": 1,
-                        "Subclasse": "Rota das Paginas"
-                    }
-                }
-            },
-            "Missoes em Andamento": {
-                "Saude Fisica": {
-                    "Corredor": {
-                        "1": {
-                            "Nome da Missao": "Desafio da Corrida Matinal",
-                            "Descricao": [
-                                "Inicie sua jornada de fitness com o Desafio da Corrida Matinal.",
-                                "Corra 10 km em uma semana para fortalecer sua resistencia e preparar-se para novos desafios.",
-                                "Ao fazer isso, voce tambem estara contribuindo para a promocao de um estilo de vida ativo na comunidade."
-                            ],
-                            "Duracao": "1 semana",
-                            "Recompensas": {
-                                "XP": 50,
-                                "Gold": "100g"
-                            }
-                        },
-                        "2": {
-                            "Nome da Missao": "Exploracao dos Trilhos Distantes",
-                            "Descricao": [
-                                "Sinta a emocao ao explorar trilhos desconhecidos durante o Desafio dos Trilhos Distantes.",
-                                "Percorra 30 km em duas semanas e conquiste o reconhecimento como um explorador destemido.",
-                                "Alem das recompensas, ganhe o Trofeu dos Trilhos, uma honra entre os aventureiros velocistas."
-                            ],
-                            "Duracao": "2 semanas",
-                            "Recompensas": {
-                                "XP": 75,
-                                "Gold": "150g",
-                                "Trofeu": "Trofeu dos Velozes, uma insignia rara que aumenta sua reputacao entre os corredores"
-                            }
                         }
                     }
                 },

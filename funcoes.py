@@ -5,7 +5,7 @@ import re
 # --------------------- Funções ---------------------
 
 # Função para definir o tamanho do programa no printdo terminal
-def tamProg(titulo='Aplicativo Programa X'):
+def tamProg(titulo='Aplicativo PixelHealth'):
     return len(titulo) * 3 # armazenando em uma variável o tamanho do título para formatação do menu
 
 # Função de linha simples para estética

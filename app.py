@@ -51,14 +51,14 @@ respostas_ajuda = ["Hábitos saudáveis são fundamentais para manter e melhorar
                    "Selecione o Menu Missões no Menu Principal.",
                    "Você pode atualizar suas informações de conta no Menu Personagem, selecionando 'Informações da Conta'.",
                    "Selecione o Menu Skills no Menu Personagem para ver as suas Skills.",
-                   "Para entrar em contato com o suporte do Programa X, envie um e-mail para support@programax.com."]
+                   "Para entrar em contato com o suporte do PixelHealth, envie um e-mail para support@programax.com."]
 
 
 # --------------------- Programa Principal ---------------------
 
 # ---------- Variáveis ---------- 
 
-tamanho_do_programa = f.tamProg('Aplicativo Programa X')
+tamanho_do_programa = f.tamProg('Aplicativo PixelHealth')
 
 # ------ Variáveis de controle dos while ------
 
@@ -91,7 +91,7 @@ while not encerrar_programa:
 
     print()
     f.linha(tamanho_do_programa//2, '=-')
-    print(f'\n\033[32m{"Aplicativo Programa X":^{tamanho_do_programa}}\033[m\n')
+    print(f'\n\033[32m{"Aplicativo PixelHealth":^{tamanho_do_programa}}\033[m\n')
     f.linha(tamanho_do_programa//2, '=-')
     print()
 
@@ -116,11 +116,11 @@ while not encerrar_programa:
 
                     print(f'\033[36m{f"Login":^{tamanho_do_programa}}\033[m')
                     f.linha()
-                    print()
+                    print('\033[33m')
                     usuario_input_login = f.tratarErroStr('Digite o seu usuário: ')
                     print()
-                    senha_input_login = f.tratarErroStr('\033[33mDigite a sua senha: \033[m')
-                    print()
+                    senha_input_login = f.tratarErroStr('Digite a sua senha: ')
+                    print('\033[m')
                     f.linha()
 
                     # Verificar os inputs
@@ -155,13 +155,11 @@ while not encerrar_programa:
                     print()
                     print(f'\033[36m{f"Insira suas informações pessoais":^{tamanho_do_programa}}\033[m')
                     f.linha()
-                    print()
-                    email_input_cadastro = f.tratarErroStr('\033[33mEmail: \033[m')
-                    print()
-                    usuario_input_cadastro = f.tratarErroStr('\033[33mUsuário: \033[m')
-                    print()
-                    senha_input_cadastro = f.tratarErroStr('\033[33mSenha: \033[m')
-                    print()
+                    print('\033[33m')
+                    email_input_cadastro = f.tratarErroStr('Email: ')
+                    usuario_input_cadastro = f.tratarErroStr('Usuário: ')
+                    senha_input_cadastro = f.tratarErroStr('Senha: ')
+                    print('\033[m')
                     f.linha()
 
                     # Verificar se o usuário já existe
@@ -202,7 +200,7 @@ while not encerrar_programa:
                     skills_classes_escolhidas = {}
 
                     print()
-                    print(f'{f"Agora é hora de escolher as suas Skills!":^50}')
+                    print(f'{f"Agora é hora de escolher as suas Skills!":^{tamanho_do_programa}}')
                     print()
 
                     for skill, classe in skills_db.items(): # skill -> Saude X  |  classe -> { classe : } (ex: { Atleta de Academia, Corredor, Lutador })
@@ -217,7 +215,7 @@ while not encerrar_programa:
                             # Adicionando classes na lista de classes disponíveis
                             skills_classes_disponiveis.append(nome_classe_adicionar)
 
-                        print(f'\n\033[36m{f"Skills relacionadas a {skill}":^50}\033[m')
+                        print(f'\n\033[36m{f"Skills relacionadas a {skill}":^{tamanho_do_programa}}\033[m')
                         f.linha()
 
                         while not validar_cadastro_skill: 
@@ -226,6 +224,7 @@ while not encerrar_programa:
                             print()
 
                             for i in range(0, len(skills_classes_disponiveis)):
+                                sleep(0.3)
 
                                 # Contador para printar número das skills
                                 cont_skill += 1
@@ -241,6 +240,7 @@ while not encerrar_programa:
                             try:
                                 # Input da escolha da skill
                                 skill_classe_input_cadastro = int(f.inputSublinhado('\nQual Classe você deseja escolher? (1 por vez) '))
+                                sleep(0.3)
 
                                 # Se não estiver fora das opções oferecidas
 
@@ -262,7 +262,7 @@ while not encerrar_programa:
                                             # Remover classe escolhida na lista de classes disponíveis
                                             skills_classes_disponiveis.remove(nome_classe) 
 
-                                            print(f'\n\033[32m{f"Classe {nome_classe} adicionada com sucesso!":^50}\033[m')
+                                            print(f'\n\n\033[32m{f"Classe {nome_classe} adicionada com sucesso!":^{tamanho_do_programa}}\033[m\n\n')
 
                                             # Ir para a pergunta de continuar escolhendo ou não 
                                             validar_cadastro_skill_continuar = False
@@ -275,9 +275,10 @@ while not encerrar_programa:
 
                                             # Se o tamanho das skills escolhidas for igual a quantidade de skills, excluindo a "não praticante"
                                             if len(skills_classes_disponiveis) == 0:
-                                                print(f'\n\033[32m{f"Todas as Classes de {skill} foram selecionadas.":^50}\033[m\n')
+                                                print(f'\n\n\033[32m{f"Todas as Classes de {skill} foram selecionadas.":^{tamanho_do_programa}}\033[m\n\n')
                                                 validar_cadastro_skill = True
                                                 validar_cadastro_skill_continuar = True
+                                            sleep(0.3)
 
                                             break
                                         
@@ -289,14 +290,16 @@ while not encerrar_programa:
                                                 # Adicionar classe escolhida na lista de classes escolhidas
                                                 skills_classes_escolhidas[skill].update({"Nao Praticante":"Nao praticante (ainda)"}) 
 
-                                                print(f'\n{f"Classe {skills_classes_disponiveis[-1]} adicionada com sucesso!":^50}')
+                                                print(f'\n\n{f"Classe {skills_classes_disponiveis[-1]} adicionada com sucesso!":^{tamanho_do_programa}}\n\n')
 
                                                 validar_cadastro_skill = True
+                                                sleep(0.3)
                                                 break
                                 
                                 elif skill_classe_input_cadastro == cont_skill  + 1 and cont_skill_escolhida > 0:
                                     print('\n\033[32mOpção Não Desejo Escolher Mais selecionada com sucesso!\033[m\n')
                                     validar_cadastro_skill = True
+                                    sleep(0.3)
 
                                 else:
                                     raise ValueError
@@ -304,6 +307,7 @@ while not encerrar_programa:
                             except:
                                 # Erro
                                 print('\nErro! Digite uma opção válida!\n')
+                                sleep(0.3)
                             
                             while not validar_cadastro_skill_continuar:
                                 
@@ -331,6 +335,7 @@ while not encerrar_programa:
                                 except:
                                     # Erro
                                     print('\n\033[31mErro! Digite uma opção válida!\033[m\n')
+                                    sleep(0.3)
 
 
                 # ----- Leitura do arquivo JSON -----
@@ -366,6 +371,10 @@ while not encerrar_programa:
                 # ----- Dump para o arquivo JSON -----
                 with open("dados.json", "w") as dados_json:
                     json.dump(dados_py, dados_json)
+
+                sleep(1.5)
+                print(f"\n\033[32m{'Cadastro realizado com sucesso!':^{tamanho_do_programa}}\033[m\n")
+                sleep(1.5)
 
             case 0: # Sair do programa
                 encerrar_programa = True
@@ -717,42 +726,52 @@ while not encerrar_programa:
                     
                     # Se não
                     else:
+
+                        for missao_skill, skill_missoes in missoes_em_andamento_db.items():
+
+                            print('\033[32m')
+                            f.linha(caractere='=')
+                            print(f'{missao_skill:^{tamanho_do_programa}}')
+                            f.linha(caractere='=')
+                            print('\033[m')
+
             
-                        for missao_nome_classe, missao_info_total in missoes_em_andamento_db.items():
-                            sleep(1)
-
-                            f.aviso(f"     {missao_nome_classe}    ",tresPontos='')
-
-
-                            for missao_numero, missao_info in missao_info_total.items():
-
+                            for missao_nome_classe, missao_info_total in skill_missoes.items():
                                 sleep(1)
-                                print(f'\n\033[35m{f"Missão {missao_numero}":^{tamanho_do_programa}}\033[m')
-                                f.linha()
-                                
-                                for missao_info_chave, missao_info_valor in missao_info.items():
+
+                                f.aviso(f"     {missao_nome_classe}    ",tresPontos='')
+
+
+                                for missao_numero, missao_info in missao_info_total.items():
+
                                     sleep(1)
-
-                                    if isinstance(missao_info_valor, dict): # Recompensa
-                                        print(f'\n\033[32m{missao_info_chave}:\033[m')
-                                            
-                                        for recompensa_chave, recompensa_valor in missao_info_valor.items():
-                                            sleep(1)
-                                            print(f'- \033[31m{recompensa_chave}\033[m: {recompensa_valor}')
+                                    print(f'\n\033[35m{f"Missão {missao_numero}":^{tamanho_do_programa}}\033[m')
+                                    f.linha()
                                     
-                                    elif isinstance(missao_info_valor, list): # Descrição
-                                        print(f'\n\033[32m{missao_info_chave}:\033[m\n')
+                                    for missao_info_chave, missao_info_valor in missao_info.items():
+                                        sleep(1)
 
-                                        for frase in missao_info_valor:
-                                            print(f'{frase}')
+                                        if isinstance(missao_info_valor, dict): # Recompensa
+                                            print(f'\n\033[32m{missao_info_chave}:\033[m')
+                                                
+                                            for recompensa_chave, recompensa_valor in missao_info_valor.items():
+                                                sleep(1)
+                                                print(f'- \033[31m{recompensa_chave}\033[m: {recompensa_valor}')
+                                        
+                                        elif isinstance(missao_info_valor, list): # Descrição
+                                            print(f'\n\033[32m{missao_info_chave}:\033[m\n')
 
-                                    else:
-                                        print(f'\n\033[32m{missao_info_chave}\033[m: {missao_info_valor}')
+                                            for frase in missao_info_valor:
+                                                print(f'{frase}')
 
-                                print()
-                                f.linha()
+                                        else:
+                                            print(f'\n\033[32m{missao_info_chave}\033[m: {missao_info_valor}')
 
-                                sleep(2)
+                                    print()
+                                    f.linha()
+                                    print()
+
+                                    sleep(2)
 
             case 3: # Ajuda
                 

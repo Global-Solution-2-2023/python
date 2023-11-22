@@ -1,6 +1,1 @@
-ALTERAR NOME DO PROJETO (esta Programa X)
 
-FINALIZAR O CADASTRO
-- Mensagem de cadastro concluido
-
-Mudar print do das missoes no menu missoes (descricao) 
