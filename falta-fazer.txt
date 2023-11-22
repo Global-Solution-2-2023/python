@@ -1,7 +1,6 @@
 ALTERAR NOME DO PROJETO (esta Programa X)
 
-COLOCAR MISSOES DEPOIS DAS SKILLS NO CADASTRO E ANTES DE FINALIZAR O CADASTRO
+FINALIZAR O CADASTRO
+- Mensagem de cadastro concluido
 
-Jogar codigo do codigo-cadastro-skill.py no app.py
-
-Mandar dados do cadastro para o json
+Mudar print do das missoes no menu missoes (descricao) 

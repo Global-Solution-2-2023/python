@@ -59,13 +59,12 @@ respostas_ajuda = ["Hábitos saudáveis são fundamentais para manter e melhorar
 # ---------- Variáveis ---------- 
 
 tamanho_do_programa = f.tamProg('Aplicativo Programa X')
-usuario_logado = 'admin1'
 
 # ------ Variáveis de controle dos while ------
 
 # Menus
 encerrar_programa = False
-encerrar_menu_inicial = True
+encerrar_menu_inicial = False
 encerrar_menu_personagem = False
 encerrar_menu_skills = False
 encerrar_menu_informacoes = False
@@ -338,6 +337,8 @@ while not encerrar_programa:
                 with open("dados.json", "r") as dados_json:
                     dados_py = json.load(dados_json)
 
+                usuarios_db = dados_py["Usuarios"]
+
                 missoes_db = dados_py["Missoes"]
 
                 missoes_novo_usuario = {}
@@ -348,8 +349,6 @@ while not encerrar_programa:
                     for classe, classe_dados in skill_dados.items():
                         # Adicionando os dados das missoes da classe
                         missoes_novo_usuario[skill][classe] = missoes_db[skill][classe].copy()
-
-
 
                 # Novo usuário que será adicionado
                 novo_usuario = {
