@@ -334,6 +334,23 @@ while not encerrar_programa:
                                     print('\n\033[31mErro! Digite uma opção válida!\033[m\n')
 
 
+                # ----- Leitura do arquivo JSON -----
+                with open("dados.json", "r") as dados_json:
+                    dados_py = json.load(dados_json)
+
+                missoes_db = dados_py["Missoes"]
+
+                missoes_novo_usuario = {}
+
+                for skill, skill_dados in skills_classes_escolhidas.items():
+                    missoes_novo_usuario[skill] = {}
+
+                    for classe, classe_dados in skill_dados.items():
+                        # Adicionando os dados das missoes da classe
+                        missoes_novo_usuario[skill][classe] = missoes_db[skill][classe].copy()
+
+
+
                 # Novo usuário que será adicionado
                 novo_usuario = {
                     "Informacoes do Login": {
@@ -341,8 +358,8 @@ while not encerrar_programa:
                         "Usuario": usuario_input_cadastro,
                         "Senha": senha_input_cadastro
                     },
-                    "Skills": "",
-                    "Missoes em Andamento": ""
+                    "Skills": skills_classes_escolhidas,
+                    "Missoes em Andamento": missoes_novo_usuario
                 }
 
                 usuarios_db[len(usuarios_db)+1] = novo_usuario

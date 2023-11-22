@@ -141,34 +141,31 @@ for skill, classe in skills_db.items(): # skill -> Saude X  |  classe -> { class
 
 # print('\n')
 
-# print(skills_classes_escolhidas.items())
-
 # ----- Leitura do arquivo JSON -----
 with open("dados.json", "r") as dados_json:
     dados_py = json.load(dados_json)
 
 missoes_db = dados_py["Missoes"]
 
+missoes_novo_usuario = {}
 
 for skill, skill_dados in skills_classes_escolhidas.items():
-    sleep(1)
-    print()
+    missoes_novo_usuario[skill] = {}
 
-    missoes_db[skill]
-
-
-    print(f'----------- Adicionado: {skill} -----------')
-    print()
     for classe, classe_dados in skill_dados.items():
-        sleep(0.3)
-        print(f'\n{classe}:')
+        # Adicionando os dados das missoes da classe
+        missoes_novo_usuario[skill][classe] = missoes_db[skill][classe].copy()
 
-        sleep(0.3)
-        if isinstance(classe_dados, dict): # CLasses normais
-            for k, v in classe_dados.items():
-                print(f'- {k}: {v}')
-                sleep(0.3)
-        else: # Nao praticante
-            print(f'- {classe_dados}')
-        print()
+
+for skill, skill_dados in missoes_novo_usuario.items():
+    print(f'\nSkill: {skill}')
+    print('------------------------')
+    
+    for classe, classe_dados in skill_dados.items():
+        print(f'\nClasse: {classe}')
+        print('------------------------')
+        
+        for nivel, missao_dados in classe_dados.items():
+            print(f'Nome da Missão: {missao_dados["Nome da Missao"]}')
+
 

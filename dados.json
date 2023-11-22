@@ -14,55 +14,59 @@
                     }
                 },
                 "Saude Mental": {
-                    "Meditacao": {
-                        "Nivel": 24,
-                        "Subclasse": "Paz de Espirito"
+                    "Leitura": {
+                        "Nivel": 16,
+                        "Subclasse": "Tranquilidade Prosaica"
                     }
                 }
             },
             "Missoes em Andamento": {
-                "Corredor": {
-                    "1": {
-                        "Nome da Missao": "Corredor Destemido",
+                "Saude Fisica": {
+                    "Corredor": {
+                        "1": {
+                            "Nome da Missao": "Corredor Destemido",
+                            "Descricao": [
+                                "Os White Walkers estao ameacando os cidadaos indefesos da Terra da Corrida.",
+                                "Embarque nesta jornada epica para salvar a populacao!",
+                                "Sua tarefa eh correr 10 km em um prazo de 1 semana para fortalecer sua resistencia e preparar-se para o confronto iminente com os White Walkers."
+                            ],
+                            "Duracao": "1 semana",
+                            "Recompensas": {
+                                "XP": 50,
+                                "Gold": "100g"
+                            }
+                        }
+                    },
+                    "2": {
+                        "Nome da Missao": "Exploracao dos Trilhos Distantes",
                         "Descricao": [
-                            "Os White Walkers estao ameacando os cidadaos indefesos da Terra da Corrida.",
-                            "Embarque nesta jornada epica para salvar a populacao!",
-                            "Sua tarefa eh correr 10 km em um prazo de 1 semana para fortalecer sua resistencia e preparar-se para o confronto iminente com os White Walkers."
+                            "Sinta a emocao ao explorar trilhos desconhecidos durante o Desafio dos Trilhos Distantes.",
+                            "Percorra 30 km em duas semanas e conquiste o reconhecimento como um explorador destemido.",
+                            "Alem das recompensas, ganhe o Trofeu dos Trilhos, uma honra entre os aventureiros velocistas."
                         ],
-                        "Duracao": "1 semana",
-                        "Resompensas": {
-                            "XP": 50,
-                            "Gold": "100g"
+                        "Duracao": "2 semanas",
+                        "Recompensas": {
+                            "XP": 75,
+                            "Gold": "150g",
+                            "Trofeu": "Trofeu dos Velozes, uma insignia rara que aumenta sua reputacao entre os corredores"
                         }
                     }
-                }
-            }
-        },
-        "2": {
-            "Informacoes do Login": {
-                "Email": "admin@gmail.com",
-                "Usuario": "admin2",
-                "Senha": "1234"
-            },
-            "Skills": {
-                "Corredor": {
-                    "Nivel": 7,
-                    "Subclasse": "Passo inicial"
-                }
-            },
-            "Missoes em Andamento": {
-                "Corredor": {
-                    "1": {
-                        "Nome da Missao": "Corredor Destemido",
-                        "Descricao": [
-                            "Os White Walkers estao ameacando os cidadaos indefesos da Terra da Corrida.",
-                            "Embarque nesta jornada epica para salvar a populacao!",
-                            "Sua tarefa eh correr 10 km em um prazo de 1 semana para fortalecer sua resistencia e preparar-se para o confronto iminente com os White Walkers."
-                        ],
-                        "Duracao": "1 semana",
-                        "Resompensas": {
-                            "XP": 50,
-                            "Gold": "100g"
+                },
+                "Saude Mental": {
+                    "Leitura": {
+                        "1": {
+                            "Nome da Missao": "Odisseia dos Livros",
+                            "Descricao": [
+                                "Embarque na Odisseia dos Livros, um desafio para os amantes da leitura.",
+                                "Leia 800 paginas de diferentes generos literarios em tres semanas e expanda seus horizontes intelectuais.",
+                                "Alem das recompensas, conquiste o Trofeu Literario como reconhecimento pela sua jornada literaria."
+                            ],
+                            "Duracao": "3 semanas",
+                            "Recompensas": {
+                                "XP": 120,
+                                "Gold": "200g",
+                                "Trofeu": "Trofeu Literario, uma honra concedida apenas aos devoradores de livros mais dedicados"
+                            }
                         }
                     }
                 }
@@ -80,7 +84,7 @@
                         "Ao fazer isso, voce tambem estara contribuindo para a promocao de um estilo de vida ativo na comunidade."
                     ],
                     "Duracao": "1 semana",
-                    "Resompensas": {
+                    "Recompensas": {
                         "XP": 50,
                         "Gold": "100g"
                     }
@@ -93,7 +97,7 @@
                         "Alem das recompensas, ganhe o Trofeu dos Trilhos, uma honra entre os aventureiros velocistas."
                     ],
                     "Duracao": "2 semanas",
-                    "Resompensas": {
+                    "Recompensas": {
                         "XP": 75,
                         "Gold": "150g",
                         "Trofeu": "Trofeu dos Velozes, uma insignia rara que aumenta sua reputacao entre os corredores"
@@ -109,7 +113,7 @@
                         "Essa missao e fundamental para sua preparacao como lutador habilidoso."
                     ],
                     "Duracao": "2 semanas",
-                    "Resompensas": {
+                    "Recompensas": {
                         "XP": 60,
                         "Gold": "120g"
                     }
@@ -124,7 +128,7 @@
                         "Ao concluir estas duas semanas de dedicacao, voce vera uma notavel mudanca em sua forca, resistencia e condicionamento fisico."
                     ],
                     "Duracao": "2 semanas",
-                    "Resompensas": {
+                    "Recompensas": {
                         "XP": 70,
                         "Gold": "140g"
                     }
@@ -137,13 +141,14 @@
                         "Conquiste o respeito da comunidade fitness e alcance o Trofeu da Barra Real, simbolizando sua maestria no mundo dos exercicios."
                     ],
                     "Duracao": "3 semanas",
-                    "Resompensas": {
+                    "Recompensas": {
                         "XP": 120,
                         "Gold": "250g",
                         "Trofeu": "Trofeu da Barra Real, uma honra concedida apenas aos atletas mais habilidosos"
                     }
                 }
-            }
+            },
+            "Nao Praticante": "Nao tem missoes."
         },
         "Saude Mental": {
             "Leitura": {
@@ -155,7 +160,7 @@
                         "Alem das recompensas, conquiste o Trofeu Literario como reconhecimento pela sua jornada literaria."
                     ],
                     "Duracao": "3 semanas",
-                    "Resompensas": {
+                    "Recompensas": {
                         "XP": 120,
                         "Gold": "200g",
                         "Trofeu": "Trofeu Literario, uma honra concedida apenas aos devoradores de livros mais dedicados"
@@ -171,7 +176,7 @@
                         "Esta missao e um passo crucial para fortalecer sua saude mental e equilibrio emocional."
                     ],
                     "Duracao": "2 semanas",
-                    "Resompensas": {
+                    "Recompensas": {
                         "XP": 60,
                         "Gold": "100g"
                     }
@@ -184,13 +189,14 @@
                         "Alem das recompensas, alcance o Trofeu da Serenidade como simbolo do seu dom\u00c3\u00adnio na arte da meditacao."
                     ],
                     "Duracao": "3 semanas",
-                    "Resompensas": {
+                    "Recompensas": {
                         "XP": 100,
                         "Gold": "150g",
                         "Trofeu": "Trofeu da Serenidade, uma honra concedida apenas aos mestres da meditacao"
                     }
                 }
-            }
+            },
+            "Nao Praticante": "Nao tem missoes."
         }
     },
     "Skills": {

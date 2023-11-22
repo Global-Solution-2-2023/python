@@ -48,23 +48,12 @@ from time import sleep
 #                 print(f'\n{missao_info_chave}: {missao_info_valor}')
                     
 
-# a = {1:"z", 2: "gb", "gb":{3.1: "b"}}
+a = {1:"z", 2: "gb", "gb":{3.1: "b"}}
 
-# a[0] = 8
-
-# b = {"aaa":{1: {"k":"l"}}}
-
-# c = [1, 2, 3, "A", "gb"]
-
-
-# if "gb" in c:
-#     print('FOI')
-# else:
-#     print('NAO')
-
-#print(len(c))
-with open("dados.json", "r") as dados_json:
-    dados_py = json.load(dados_json)
-
-missoes_db = dados_py["Missoes"]
-print(missoes_db.keys())
+z = {}
+cont = 0
+for k in a.keys():
+    cont+=1
+    nome = k
+    z[cont] = a[nome]
+print(z)
