@@ -729,50 +729,99 @@ while not encerrar_programa:
 
                         for missao_skill, skill_missoes in missoes_em_andamento_db.items():
 
-                            print('\033[32m')
-                            f.linha(caractere='=')
-                            print(f'{missao_skill:^{tamanho_do_programa}}')
-                            f.linha(caractere='=')
-                            print('\033[m')
+                            if len(menu_missoes) == 3 and escolha_missoes == 2 and missao_skill == "Saude Mental" or len(menu_missoes) == 3 and missao_skill == "Saude Mental":
 
-            
-                            for missao_nome_classe, missao_info_total in skill_missoes.items():
-                                sleep(1)
+                                print('\033[32m')
+                                f.linha(caractere='=')
+                                print(f'{missao_skill:^{tamanho_do_programa}}')
+                                f.linha(caractere='=')
+                                print('\033[m')
 
-                                f.aviso(f"     {missao_nome_classe}    ",tresPontos='')
-
-
-                                for missao_numero, missao_info in missao_info_total.items():
-
+                
+                                for missao_nome_classe, missao_info_total in skill_missoes.items():
                                     sleep(1)
-                                    print(f'\n\033[35m{f"Missão {missao_numero}":^{tamanho_do_programa}}\033[m')
-                                    f.linha()
-                                    
-                                    for missao_info_chave, missao_info_valor in missao_info.items():
+
+                                    f.aviso(f"     {missao_nome_classe}    ",tresPontos='')
+
+
+                                    for missao_numero, missao_info in missao_info_total.items():
+
+                                        sleep(0.5)
+                                        print(f'\n\033[35m{f"Missão {missao_numero}":^{tamanho_do_programa}}\033[m')
+                                        f.linha()
+                                        
+                                        for missao_info_chave, missao_info_valor in missao_info.items():
+                                            sleep(1)
+
+                                            if isinstance(missao_info_valor, dict): # Recompensa
+                                                print(f'\n\033[32m{missao_info_chave}:\033[m')
+                                                    
+                                                for recompensa_chave, recompensa_valor in missao_info_valor.items():
+                                                    sleep(1)
+                                                    print(f'- \033[31m{recompensa_chave}\033[m: {recompensa_valor}')
+                                            
+                                            elif isinstance(missao_info_valor, list): # Descrição
+                                                print(f'\n\033[32m{missao_info_chave}:\033[m\n')
+
+                                                for frase in missao_info_valor:
+                                                    print(f'{frase}')
+
+                                            else:
+                                                print(f'\n\033[32m{missao_info_chave}\033[m: {missao_info_valor}')
+
+                                        print()
+                                        f.linha()
+                                        print()
+
                                         sleep(1)
 
-                                        if isinstance(missao_info_valor, dict): # Recompensa
-                                            print(f'\n\033[32m{missao_info_chave}:\033[m')
-                                                
-                                            for recompensa_chave, recompensa_valor in missao_info_valor.items():
-                                                sleep(1)
-                                                print(f'- \033[31m{recompensa_chave}\033[m: {recompensa_valor}')
+                            elif escolha_missoes == 1 and missao_skill == "Saude Fisica":
+
+                                print('\033[32m')
+                                f.linha(caractere='=')
+                                print(f'{missao_skill:^{tamanho_do_programa}}')
+                                f.linha(caractere='=')
+                                print('\033[m')
+
+                
+                                for missao_nome_classe, missao_info_total in skill_missoes.items():
+                                    sleep(1)
+
+                                    f.aviso(f"     {missao_nome_classe}    ",tresPontos='')
+
+
+                                    for missao_numero, missao_info in missao_info_total.items():
+
+                                        sleep(1)
+                                        print(f'\n\033[35m{f"Missão {missao_numero}":^{tamanho_do_programa}}\033[m')
+                                        f.linha()
                                         
-                                        elif isinstance(missao_info_valor, list): # Descrição
-                                            print(f'\n\033[32m{missao_info_chave}:\033[m\n')
+                                        for missao_info_chave, missao_info_valor in missao_info.items():
+                                            sleep(1)
 
-                                            for frase in missao_info_valor:
-                                                print(f'{frase}')
+                                            if isinstance(missao_info_valor, dict): # Recompensa
+                                                print(f'\n\033[32m{missao_info_chave}:\033[m')
+                                                    
+                                                for recompensa_chave, recompensa_valor in missao_info_valor.items():
+                                                    sleep(1)
+                                                    print(f'- \033[31m{recompensa_chave}\033[m: {recompensa_valor}')
+                                            
+                                            elif isinstance(missao_info_valor, list): # Descrição
+                                                print(f'\n\033[32m{missao_info_chave}:\033[m\n')
 
-                                        else:
-                                            print(f'\n\033[32m{missao_info_chave}\033[m: {missao_info_valor}')
+                                                for frase in missao_info_valor:
+                                                    print(f'{frase}')
 
-                                    print()
-                                    f.linha()
-                                    print()
+                                            else:
+                                                print(f'\n\033[32m{missao_info_chave}\033[m: {missao_info_valor}')
 
-                                    sleep(2)
+                                        print()
+                                        f.linha()
+                                        print()
 
+                                        sleep(2)
+                                
+                            
             case 3: # Ajuda
                 
                 while not encerrar_menu_ajuda:

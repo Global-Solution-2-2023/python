@@ -1,0 +1,3 @@
+arrumar print das missoes (seleciona 1 e vai todas)
+
+mensagem de erro no cadastro mesmo estando certo
