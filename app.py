@@ -134,9 +134,9 @@ while not encerrar_programa:
                             encerrar_menu_inicial = True 
                             validar_login = True
 
-                        else:
-                            print()
-                            f.aviso(' Erro no login. Tente novamente.', tresPontos='')
+                    if not validar_login:
+                        print()
+                        f.aviso(' Erro no login. Tente novamente.', tresPontos='')
             
             case 2: # Cadastro
 
